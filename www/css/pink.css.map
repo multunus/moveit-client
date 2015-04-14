@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEQ,qBAAY;EACR,YAAY,EAAE,IAAI;;AAK9B,4BAA4B;EACxB,WAAW,EAAE,IAAI;;AAIjB,sBAAK;EACD,SAAS,EAAE,KAAK;EAChB,KAAK,EAAE,KAAK",
+"sources": ["pink.scss"],
+"names": [],
+"file": "pink.css"
+}

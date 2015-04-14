@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/pink.css">
+
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="login.html">User Details</a></li>
+                    <li class="active"><a href="index.html">Add Entry</a></li>
+                    <li><a href="monthly_summary.html">Monthly Summary</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="login.html">User Details</a></li>
+                    <li class="active"><a href="index.html">Add Entry</a></li>
+                    <li><a href="monthly_summary.html">Monthly Summary</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <form action="">
+
+                <div class="form-group">
+                    <label for="start_date" class="">Date</label>
+                    <input type="start_date" class="form-control datepicker" id="date" placeholder="dd/mm/yyyy" name="report[date]" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <input type="number" class="form-control" id="duration" placeholder="00" name="report[duration]">
+                </div>
+                <div class="submit-btn-container center-align">
+                    <button type="submit" class="btn btn-primary save-btn">SAVE</button>
+                </div>
+
+            </form>
+            <div id="modal1" class="update-failed-modal modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>Oops!! Something's not right</h4>
+                    <p>We are unable update your workout.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/moment.min.js"></script>
+        <script src="js/materialize.min.js"></script>
+        <script src="js/underscore.min.js"></script>
+
+        <script>
+         $(function() {
+             $(".button-collapse").sideNav();
+
+             if(_.isEmpty(localStorage['userEmail'])){
+                 window.location = "login.html"
+             }
+             $('input[type="date"]').val(moment().format('DD/MM/YYYY'));
+             $('#date').val(moment().format('YYYY-MM-DD HH:mm:ss'));
+             var datePicker = $('.datepicker').pickadate({
+                 selectMonths: false // Creates a dropdown to control month
+             });
+             var disableSaveButtonWith = function(form, text){
+                 saveBtn = $(form).find('.save-btn')[0]
+                 saveBtn.disabled = true
+                 saveBtn.textContent = text;
+             }
+
+             var enableSaveButtonWith = function(form, text){
+                 saveBtn = $(form).find('.save-btn')[0]
+                 saveBtn.disabled = false
+                 saveBtn.textContent = text;
+             }
+             $("form").submit(function(e) {
+                 e.preventDefault();
+                 var form = this;
+                 disableSaveButtonWith(form, "SAVING..");
+                 var data = {
+                     email: localStorage.userEmail,
+                     report: {
+                         duration: $('#duration').val(),
+                         date: moment($('#date').val()).format('YYYY-MM-DD HH:mm:ss')
+                     }
+                 };
+                 $.ajax({
+                     dataType: 'json',
+                     url: '/http://pink-server.herokuapp.com/reports',
+                     type: 'POST',
+                     data: JSON.stringify(data),
+                     success: function(data, textStatus, jqXHR) {
+                         enableSaveButtonWith(form, 'DONE');
+                     },
+                     error: function() {
+                         $('.update-failed-modal').openModal();
+                         enableSaveButtonWith(form, 'SAVE');
+                     }
+                 });
+             });
+         });
+        </script>
+    </body>
+</html>
