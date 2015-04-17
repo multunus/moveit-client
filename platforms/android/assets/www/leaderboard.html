@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/moveit.css">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" data-activates="mobile-demo" class="button-collapse burger-menu"><i class="mdi-navigation-menu"><span>Leaderboard</span></i></a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="login.html">Profile</a></li>
+                    <li><a href="index.html">Add Entry</a></li>
+                    <li><a href="monthly_summary.html">Monthly Summary</a></li>
+                    <li class="active"><a href="leaderboard.html">Leaderboard</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="login.html">Profile</a></li>
+                    <li><a href="index.html">Add Entry</a></li>
+                    <li><a href="monthly_summary.html">Monthly Summary</a></li>
+                    <li class="active"><a href="leaderboard.html">Leaderboard</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="top-bar row">
+            <div>
+                <span class="logo">
+                    <img src="img/logo.png" />
+                </span>
+                <span class="date-and-total">
+                    <div class="date">
+                    </div>
+                    <div class="total-amount">
+                        <span>&#8377</span>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="container leaderboard">
+            <div class="row">
+                <div class="loading-throbber col s12 center">
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-blue">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-red">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-yellow">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-green">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <ul class="collection">
+                    
+                </ul>
+            </div>
+        </div>
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/moveit.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/moment.min.js"></script>
+        <script src="js/materialize.min.js"></script>
+        <script src="js/underscore.min.js"></script>
+
+        <script>
+         $(function() {
+             $(".button-collapse").sideNav();
+             $(".loading-throbber").show();
+
+             if(_.isEmpty(localStorage['userEmail'])){
+                 window.location = "login.html"
+             }
+             current_month = moment().endOf('month').format('MMMM YYYY');
+             $('.date').text(current_month);
+             var data = {
+                 month: current_month
+             }
+             
+             var total_amount = 0;
+             $.ajax({
+                 dataType: 'json',
+                 url: 'http://pink-server.herokuapp.com/leaderboard',
+                 type: 'GET',
+                 data: data,
+                 success: function(data, textStatus, jqXHR) {
+                     console.log(data);
+                     _.each(data.leaderboard, function(entry, index){
+                         entryHTML = '<li class="collection-item avatar"><img src="" alt="" class="circle"><span class="item-content"><span class="count">#' + (index + 1) +'</span><span class="title">' + entry.name + '</span><span class="right"><div class="amount"><span class="symbol">&#8377</span>' + entry.amount + '</div><div class="duration">' + entry.duration + 'mins</div></span></span></li>';
+                         $('.leaderboard > .row > .collection').append(entryHTML);
+                         total_amount += entry.amount;
+                     });
+                     $(".loading-throbber").hide();
+                     $('.total-amount').html( total_amount + '/' + data.monthly_goal);
+                 },
+                 error: function() {
+                     alert('Opps Something Went Wrong!');
+                 },
+                 timeout: 2000
+             });
+         });
+        </script>
+    </body>
+</html>
