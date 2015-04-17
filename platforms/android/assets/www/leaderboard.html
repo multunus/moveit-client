@@ -128,7 +128,7 @@
                  success: function(data, textStatus, jqXHR) {
                      console.log(data);
                      _.each(data.leaderboard, function(entry, index){
-                         entryHTML = '<li class="collection-item avatar"><img src="" alt="" class="circle"><span class="item-content"><span class="count">#' + (index + 1) +'</span><span class="title">' + entry.name + '</span><span class="right"><div class="amount"><span class="symbol">&#8377</span>' + entry.amount + '</div><div class="duration">' + entry.duration + 'mins</div></span></span></li>';
+                         entryHTML = '<li class="collection-item avatar"><img src="' + entry.gravatar  +'" alt="" class="circle"><span class="item-content"><span class="count">#' + (index + 1) +'</span><span class="title">' + entry.name + '</span><span class="right amount-section"><div class="amount"><span class="symbol">&#8377</span>' + entry.amount + '</div><div class="duration">' + entry.duration + 'mins</div></span></span></li>';
                          $('.leaderboard > .row > .collection').append(entryHTML);
                          total_amount += entry.amount;
                      });

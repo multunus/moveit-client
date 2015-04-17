@@ -27,28 +27,30 @@ body {
         }
     }
     .top-bar{
-        height: 70px;
+        height: 78px;
         background-color: $moveit-secondary-color;
+        margin-bottom: 0px;
         .top-bar-container{
             padding: 4px;
         }
         .logo{
             padding-left: 22px;
-            padding-top: 6px;
+            padding-top: 10px;
             display: inline-block;
             img{
                 vertical-align: super;
-                height: 45px;
+                height: 50px;
             }
         }
         .date-and-total{
+            vertical-align: super;
             display: inline-block;
             padding-left: 18px;
             .date{
                 font-size: large;
             }
             .total-amount{
-                font-size: 22px;
+                font-size: 24px;
                 font-weight: 700
             }
             .goal-section{
@@ -66,25 +68,32 @@ body {
             }
             .item-content{
                 margin-top: 6px;
-                margin-left: 14px;
+                margin-left: 10px;
+                width: 100%;
+                display: inline-block;
+                vertical-align: text-top;
                 .title{
                     font-size: 23px !important;
-                    padding-left: 5px;
+                    padding-left: 3px;
                 }
                 .count{
                     display: inline-block;
-                    padding: 10px;
+                    padding-left: 10px;
+                    padding-right: 5px;
                     font-size: 20px !important;
                     color: $disabled-text;
                 }
-                .amount{
-                    color: rgb(117, 117, 117);
-                    font-size: x-large;
-                }
-                .duration{
-                    color: rgb(189, 189, 189);
-                    margin-top: 6px;
-                    margin-left: 14px;
+                .amount-section{
+                    display: inline-block;
+                    .amount{
+                        color: rgb(117, 117, 117);
+                        font-size: x-large;
+                    }
+                    .duration{
+                        color: rgb(189, 189, 189);
+                        margin-top: 6px;
+                        margin-left: 14px;
+                    }
                 }
 
             }

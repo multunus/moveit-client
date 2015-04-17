@@ -16,24 +16,26 @@ body .container {
     border-radius: 0px;
     border: 0; }
 body .top-bar {
-  height: 70px;
-  background-color: #fee66c; }
+  height: 78px;
+  background-color: #fee66c;
+  margin-bottom: 0px; }
   body .top-bar .top-bar-container {
     padding: 4px; }
   body .top-bar .logo {
     padding-left: 22px;
-    padding-top: 6px;
+    padding-top: 10px;
     display: inline-block; }
     body .top-bar .logo img {
       vertical-align: super;
-      height: 45px; }
+      height: 50px; }
   body .top-bar .date-and-total {
+    vertical-align: super;
     display: inline-block;
     padding-left: 18px; }
     body .top-bar .date-and-total .date {
       font-size: large; }
     body .top-bar .date-and-total .total-amount {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700; }
     body .top-bar .date-and-total .goal-section {
       font-size: 13px;
@@ -46,22 +48,28 @@ body .leaderboard {
       padding-left: 52px; }
     body .leaderboard .collection-item .item-content {
       margin-top: 6px;
-      margin-left: 14px; }
+      margin-left: 10px;
+      width: 100%;
+      display: inline-block;
+      vertical-align: text-top; }
       body .leaderboard .collection-item .item-content .title {
         font-size: 23px !important;
-        padding-left: 5px; }
+        padding-left: 3px; }
       body .leaderboard .collection-item .item-content .count {
         display: inline-block;
-        padding: 10px;
+        padding-left: 10px;
+        padding-right: 5px;
         font-size: 20px !important;
         color: #bcbcbc; }
-      body .leaderboard .collection-item .item-content .amount {
-        color: #757575;
-        font-size: x-large; }
-      body .leaderboard .collection-item .item-content .duration {
-        color: #bdbdbd;
-        margin-top: 6px;
-        margin-left: 14px; }
+      body .leaderboard .collection-item .item-content .amount-section {
+        display: inline-block; }
+        body .leaderboard .collection-item .item-content .amount-section .amount {
+          color: #757575;
+          font-size: x-large; }
+        body .leaderboard .collection-item .item-content .amount-section .duration {
+          color: #bdbdbd;
+          margin-top: 6px;
+          margin-left: 14px; }
 
 .container, .monthly-summary {
   padding-top: 25px; }
