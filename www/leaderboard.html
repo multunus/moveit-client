@@ -27,7 +27,7 @@
             </div>
         </nav>
         <div class="top-bar row">
-            <div>
+            <div class="top-bar-container">
                 <span class="logo">
                     <img src="img/logo.png" />
                 </span>
@@ -36,6 +36,14 @@
                     </div>
                     <div class="total-amount">
                         <span>&#8377</span>
+                        <span class="value">
+                        </span>
+                        <span class="goal-section">
+                            /
+                            <span>&#8377</span>
+                            <span class ="goal">
+                            </span>
+                        </span>
                     </div>
                 </span>
             </div>
@@ -125,7 +133,8 @@
                          total_amount += entry.amount;
                      });
                      $(".loading-throbber").hide();
-                     $('.total-amount').html( total_amount + '/' + data.monthly_goal);
+                     $('.total-amount > .value').html( total_amount);
+                     $('.goal-section > .goal').text(data.monthly_goal);
                  },
                  error: function() {
                      alert('Opps Something Went Wrong!');

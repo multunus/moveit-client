@@ -16,18 +16,28 @@ body .container {
     border-radius: 0px;
     border: 0; }
 body .top-bar {
-  height: 60px;
+  height: 70px;
   background-color: #fee66c; }
+  body .top-bar .top-bar-container {
+    padding: 4px; }
   body .top-bar .logo {
-    display: inline-flex; }
+    padding-left: 22px;
+    padding-top: 6px;
+    display: inline-block; }
     body .top-bar .logo img {
-      height: 45px;
-      padding-left: 30px;
-      margin-top: 5px; }
+      vertical-align: super;
+      height: 45px; }
   body .top-bar .date-and-total {
     display: inline-block;
-    padding-left: 18px;
-    margin-top: 12px; }
+    padding-left: 18px; }
+    body .top-bar .date-and-total .date {
+      font-size: large; }
+    body .top-bar .date-and-total .total-amount {
+      font-size: 22px;
+      font-weight: 700; }
+    body .top-bar .date-and-total .goal-section {
+      font-size: 13px;
+      color: #bbaa4e; }
 body .leaderboard {
   margin-bottom: 0px; }
   body .leaderboard .collection-item {
