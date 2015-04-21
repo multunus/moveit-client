@@ -10,13 +10,13 @@
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     </head>
-    <body>
+    <body class="index">
         <nav>
             <div class="nav-wrapper">
                 <a href="#" data-activates="mobile-demo" class="button-collapse burger-menu"><i class="mdi-navigation-menu"><span>Add Entry</span></i></a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="login.html">Profile</a></li>
-                    <li class="active"><a href="index.html">Add Entry</a></li>
+                    <li class="active"><a href="index.html" >Add Entry</a></li>
                     <li><a href="monthly_summary.html">Monthly Summary</a></li>
                     <li><a href="leaderboard.html">Leaderboard</a></li>
                 </ul>
@@ -30,7 +30,7 @@
         </nav>
         <div class="container">
             <form action="">
-                <div class="row">
+                <div class="row form-fields">
                     <div class="form-group col s12">
                         <label for="date" class="">Date</label>
                         <input type="date" class="form-control datepicker" id="date" placeholder="dd/mm/yyyy" name="report[date]" readonly>
@@ -57,10 +57,9 @@
              $(".button-collapse").sideNav();
 
              if(_.isEmpty(localStorage['userEmail'])){
-                 window.location = "login.html"
+                 window.location = "login.html";
              }
-             $('input[type="date"]').val(moment().format('DD/MM/YYYY'));
-             $('#date').val(moment().format('MMMM Do YYYY'));
+             $('#date').val(moment().format('Do MMMM YYYY'));
              var datePicker = $('.datepicker').pickadate({
                  selectMonths: false // Creates a dropdown to control month
              });
@@ -88,7 +87,8 @@
                      error: function() {
                          alert("Oops !! Something went wrong")
                          enableSaveButtonWith(form, 'SAVE');
-                     }
+                     },
+                     timeout: 30000
                  });
              });
          });

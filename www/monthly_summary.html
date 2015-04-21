@@ -23,7 +23,7 @@
                     <li><a href="login.html">Profile</a></li>
                     <li><a href="index.html">Add Entry</a></li>
                     <li class="active"><a href="monthly_summary.html">Monthly Summary</a></li>
-                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="leaderboard.html" >Leaderboard</a></li>
                 </ul>
             </div>
         </nav>
@@ -75,8 +75,13 @@
                 </div>  
             </div>
         </div>
-
+        <div class="bottom-spacing">
+        </div>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large waves-effect waves-light add-entry-btn"><i class="mdi-content-add"></i></a>
+        </div>
         <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/moveit.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/moment.min.js"></script>
         <script src="js/materialize.min.js"></script>
@@ -115,7 +120,7 @@
                  error: function() {
                      alert('Opps Something Went Wrong!');
                  },
-                 timeout: 10000
+                 timeout: 100000
              });
          });
         </script>
