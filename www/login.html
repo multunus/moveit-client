@@ -54,7 +54,7 @@
         <script src="dist/spin.min.js"></script>
         <script src="dist/ladda.min.js"></script>
         <script src="js/moveit.js"></script>
-
+        <script src="js/settings.js"></script>
         <script>
          $(function() {
              $(".button-collapse").sideNav();
@@ -73,7 +73,7 @@
                  disableSaveButtonWith(form, "Registering");
                  $.ajax({
                      dataType: 'json',
-                     url: 'http://pink-server.herokuapp.com/register',
+                     url: settings.server.baseUrl + 'register',
                      type: 'POST',
                      data: JSON.stringify(data),
                      success: function() {

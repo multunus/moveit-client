@@ -111,6 +111,8 @@
         <script src="js/globalize.min.js"></script>
         <script src="js/globalize.culture.as-IN.min.js"></script>
         <script src="js/moveit.js"></script>
+        <script src="js/settings.js"></script>
+
         <script>
          $(function() {
              $(".button-collapse").sideNav();
@@ -130,7 +132,7 @@
              var css_class = '';
              $.ajax({
                  dataType: 'json',
-                 url: 'http://pink-server.herokuapp.com/leaderboard',
+                 url: settings.server.baseUrl + 'leaderboard',
                  type: 'GET',
                  data: data,
                  success: function(data, textStatus, jqXHR) {
