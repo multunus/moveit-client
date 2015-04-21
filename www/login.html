@@ -73,7 +73,7 @@
                  disableSaveButtonWith(form, "Registering");
                  $.ajax({
                      dataType: 'json',
-                     url: settings.server.baseUrl + 'register',
+                     url: settings.server.apiUrl + 'register',
                      type: 'POST',
                      data: JSON.stringify(data),
                      success: function() {
