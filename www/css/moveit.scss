@@ -10,6 +10,21 @@ input{
 
 
 body {
+    .hidden{
+        display: none;
+    }
+    .test-mode{
+        position: fixed;
+        width: 100%;
+        height: 20px;
+        font-size: 12px;
+        padding: 2px;
+        background-color: rgb(119, 224, 119);
+        bottom: 0px;
+        left: 0px;
+        text-align: center;
+        z-index: 100;
+    }
     nav{
         background-color: $moveit-primary-color;
         .burger-menu{ 

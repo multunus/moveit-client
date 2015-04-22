@@ -9,6 +9,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     </head>
     <body>
+        <div class="test-mode hidden">
+            <span>
+                Test Mode Enabled
+            </span>
+        </div>
         <nav>
             <div class="nav-wrapper">
                 <a href="#" data-activates="mobile-demo" class="button-collapse burger-menu"><i class="mdi-navigation-menu"><span>Leaderboard</span></i></a>
@@ -17,12 +22,14 @@
                     <li><a href="index.html">Add Entry</a></li>
                     <li><a href="monthly_summary.html">Monthly Summary</a></li>
                     <li class="active"><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="settings.html">Settings</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a href="login.html">Profile</a></li>
                     <li><a href="index.html">Add Entry</a></li>
                     <li><a href="monthly_summary.html">Monthly Summary</a></li>
                     <li class="active"><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="settings.html">Settings</a></li>
                 </ul>
             </div>
         </nav>
@@ -114,7 +121,15 @@
         <script src="js/settings.js"></script>
 
         <script>
+         function enableTestMode(){
+             var settings = JSON.parse(localStorage.getItem("settings")) || {};
+             if(settings.mode === "test"){
+                 $(".test-mode").removeClass("hidden");
+             }
+         };
+         
          $(function() {
+             enableTestMode();
              $(".button-collapse").sideNav();
              $(".loading-throbber").show();
 
@@ -132,7 +147,7 @@
              var css_class = '';
              $.ajax({
                  dataType: 'json',
-                 url: settings.server.apiUrl + 'leaderboard',
+                 url: settings.getSetting("apiUrl") + 'leaderboard',
                  type: 'GET',
                  data: data,
                  success: function(data, textStatus, jqXHR) {
