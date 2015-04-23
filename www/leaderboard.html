@@ -2,7 +2,6 @@
 <html>
     <head>
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/materialize.min.css">
         <link rel="stylesheet" href="css/moveit.css">
         <!--Let browser know website is optimized for mobile-->
@@ -104,14 +103,31 @@
                     
                 </ul>
             </div>
+            <div id="leader-board-modal" class="modal"></div>
         </div>
         <div class="bottom-spacing">
         </div>
         <div class="fixed-action-btn">
             <a class="btn-floating btn-large waves-effect waves-light add-entry-btn"><i class="mdi-content-add"></i></a>
         </div>
+        <script type="text/template" id="modal-template">
+              <div class="modal-content no-padding">
+                <div class="modal-header valign-wrapper">
+                  <h5 class="valign center-align">Congratulations!</h5>
+                </div>
+                <p class="amount center-align grey-text text-darken-2">
+                  &#x20b9;
+                  <span class="value"></span>
+                  <span class="grey-text text-lighten-1 help-text">Contributed</span>
+                </p>
+              </div>
+              <div class="row modal-button">
+                <button class="btn btn-primary save-btn col s12 modal-action modal-close">I Feel Gooood!</button>
+              </div>
+        </script>
         <script src="js/jquery-2.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-count-to.js"></script>
+        <script src="js/jquery-url-params.js"></script>
         <script src="js/materialize.min.js"></script>
         <script src="js/underscore.min.js"></script>
         <script src="js/moment.min.js"></script>
@@ -127,6 +143,15 @@
                  $(".test-mode").removeClass("hidden");
              }
          };
+        function showModalFor(user) {
+          var modalTemplate = $("#modal-template").html();
+          var template = _.template(modalTemplate);
+          $("#leader-board-modal").html(template({amount: user.amount}));
+          $("#leader-board-modal").openModal();
+          $("#leader-board-modal .value").countTo({
+            to: user.amount
+          });
+        }
          
          $(function() {
              enableTestMode();
@@ -156,6 +181,9 @@
                          if(entry.email === localStorage["userEmail"]){
                              title_text = 'YOU';
                              css_class = 'highlight';
+                             if($.urlParam('show-modal') && $.urlParam('show-modal') == "true"){
+                               showModalFor(entry);
+                             }
                          }else{
                              title_text = entry.name;
                              css_class = '';
