@@ -5,5 +5,17 @@
             "url": "https://github.com/apache/cordova-plugin-splashscreen.git",
             "subdir": "."
         }
+    },
+    "de.appplant.cordova.plugin.local-notification": {
+        "source": {
+            "type": "registry",
+            "id": "de.appplant.cordova.plugin.local-notification@0.8.1"
+        }
+    },
+    "org.apache.cordova.device": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.device"
+        }
     }
 }
