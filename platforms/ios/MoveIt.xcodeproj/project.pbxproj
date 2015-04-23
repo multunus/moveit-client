@@ -39,7 +39,6 @@
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		7BC7332894544D7B936A7699 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 20920FB1C1D343448049B5FC /* CDVSplashScreen.m */; };
 		1E9452E80CBF483CB354B1D6 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBC43582666431EACCB7A34 /* CDVDevice.m */; };
 		F31A4EA193A447D9A4AC6EF7 /* AppDelegate+APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD724A690EA40FA8685DEB2 /* AppDelegate+APPLocalNotification.m */; };
 		B358192033134119A2B33D38 /* APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EE15627460414997F01298 /* APPLocalNotification.m */; };
@@ -111,8 +110,6 @@
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "MoveIt/config.xml"; sourceTree = "<group>"; };
-		20920FB1C1D343448049B5FC /* CDVSplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVSplashScreen.m"; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		F77BDF79CE404C80B5BB2AD7 /* CDVSplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		EBBC43582666431EACCB7A34 /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		943BE33241A04723AA83FF70 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		1CD724A690EA40FA8685DEB2 /* AppDelegate+APPLocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+APPLocalNotification.m"; path = "de.appplant.cordova.plugin.local-notification/AppDelegate+APPLocalNotification.m"; sourceTree = "<group>"; fileEncoding = 4; };
@@ -223,8 +220,6 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				20920FB1C1D343448049B5FC /* CDVSplashScreen.m */,
-				F77BDF79CE404C80B5BB2AD7 /* CDVSplashScreen.h */,
 				EBBC43582666431EACCB7A34 /* CDVDevice.m */,
 				943BE33241A04723AA83FF70 /* CDVDevice.h */,
 				1CD724A690EA40FA8685DEB2 /* AppDelegate+APPLocalNotification.m */,
@@ -421,7 +416,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				7BC7332894544D7B936A7699 /* CDVSplashScreen.m in Sources */,
 				1E9452E80CBF483CB354B1D6 /* CDVDevice.m in Sources */,
 				F31A4EA193A447D9A4AC6EF7 /* AppDelegate+APPLocalNotification.m in Sources */,
 				B358192033134119A2B33D38 /* APPLocalNotification.m in Sources */,
