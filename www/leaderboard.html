@@ -6,9 +6,7 @@
         <link rel="stylesheet" href="css/moveit.css">
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     </head>
-    <script type="text/javascript" charset="utf-8" src="js/customNotifications.js"></script>
     <body>
         <div class="test-mode hidden">
             <span>
@@ -145,13 +143,13 @@
                  $(".test-mode").removeClass("hidden");
              }
          };
-        function showModalFor(user) {
+        function showModalFor(user, lastContribution) {
           var modalTemplate = $("#modal-template").html();
           var template = _.template(modalTemplate);
           $("#leader-board-modal").html(template({amount: user.amount}));
           $("#leader-board-modal").openModal();
           $("#leader-board-modal .value").countTo({
-            to: user.amount
+            to: lastContribution
           });
         }
          
@@ -183,8 +181,9 @@
                          if(entry.email === localStorage["userEmail"]){
                              title_text = 'YOU';
                              css_class = 'highlight';
-                             if($.urlParam('show-modal') && $.urlParam('show-modal') == "true"){
-                               showModalFor(entry);
+                             if(localStorage['lastContribution']){
+                               showModalFor(entry, localStorage['lastContribution']);
+                               localStorage.removeItem('lastContribution');
                              }
                          }else{
                              title_text = entry.name;
