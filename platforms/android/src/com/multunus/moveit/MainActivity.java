@@ -19,7 +19,11 @@
 
 package com.multunus.moveit;
 
+import android.content.Context;
 import android.os.Bundle;
+
+import com.multunus.moveit.alarms.DailyAlarms;
+
 import org.apache.cordova.*;
 
 public class MainActivity extends CordovaActivity
@@ -29,6 +33,10 @@ public class MainActivity extends CordovaActivity
     {
         super.onCreate(savedInstanceState);
         super.init();
+        Context context = getApplicationContext();
+        DailyAlarms dailyAlarms = new DailyAlarms(context);
+        dailyAlarms.setUpAlarms();
+        
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
     }
