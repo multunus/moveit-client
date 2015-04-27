@@ -19,7 +19,7 @@ function getMorningNotification(){
     every: "day",
     led: "FFFF00",
     sound: null,
-    icon: "file://img/app_logo.png"
+    icon: "file://img/ic-notification-96-xhdpi.png"
   };
   return morning;
 };
@@ -35,8 +35,7 @@ function getEveningNotification(){
     every: "day",
     led: "FFFF00",
     sound: null,
-    icon: "file://img/app_logo.png"
+    icon: "file://img/ic-notification-96-xhdpi.png"
   };
   return evening;
 };
-
