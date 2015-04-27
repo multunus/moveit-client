@@ -90,10 +90,12 @@ body .leaderboard {
     body .leaderboard .modal .modal-header h5 {
       width: 100%; }
   body .leaderboard .modal .amount {
+    margin: 5% 0;
     font-size: 5em; }
     body .leaderboard .modal .amount .help-text {
       display: block;
-      font-size: 0.5em; }
+      font-size: 0.5em;
+      margin-top: -10px; }
   body .leaderboard .modal .modal-button {
     margin: 20px; }
 

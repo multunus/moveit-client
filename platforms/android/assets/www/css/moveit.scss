@@ -129,10 +129,12 @@ body {
           }
         }
         .amount {
+            margin: 5% 0;
             font-size: 5em;
             .help-text {
               display: block;
               font-size: 0.5em;
+              margin-top: -10px;
             }
         }
        .modal-button{
