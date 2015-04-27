@@ -32,6 +32,7 @@
                     <li><a href="login.html">Profile</a></li>
                     <li class="active"><a href="index.html">Add Entry</a></li>
                     <li><a href="monthly_summary.html">Monthly Summary</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>                    
                     <li><a href="settings.html">Settings</a></li>
                 </ul>
             </div>
@@ -91,7 +92,8 @@
                      data: JSON.stringify(data),
                      success: function(data, textStatus, jqXHR) {
                          enableSaveButtonWith(form, 'DONE');
-                         window.location = "leaderboard.html?show-modal=true"
+                         localStorage['lastContribution'] = data.amount;
+                         window.location = "leaderboard.html"
                      },
                      error: function() {
                          alert("Oops !! Something went wrong")
