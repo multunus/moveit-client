@@ -13,8 +13,8 @@ function getMorningNotification(){
   morningTime.setHours(06, 00, 00, 00);
   var morning = {
     id: 1,
-    title: "Time for workout!",
-    text: "Let's get energized with a 30 min workout. Shall we?",
+    title: "Time for work out!",
+    text: "Let's get energized with a 30 min work out. Shall we?",
     at: morningTime,
     every: "day",
     led: "FFFF00",
@@ -29,8 +29,8 @@ function getEveningNotification(){
   eveningTime.setHours(18, 00, 00, 00);
   var evening = {
     id: 2,
-    title: "Workedout in the morning?",
-    text: "No problem. We can still make time for a 10 min workout. You'll feel so good afterwards. I promise!",
+    title: "Worked out in the morning?",
+    text: "No problem. We can still make time for a 10 min work out. You'll feel so good afterwards. I promise!",
     at: eveningTime,
     every: "day",
     led: "FFFF00",
