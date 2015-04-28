@@ -22,7 +22,7 @@ package com.multunus.moveit;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
+import android.util.Log;
 import com.multunus.moveit.alarms.DailyAlarms;
 
 import org.apache.cordova.*;
@@ -57,8 +57,9 @@ public class MainActivity extends CordovaActivity
     }
 
     public void didFirstRun(){
+        Log.d("moveit", "in did first run");
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean(FIRST_RUN, false);
+        editor.putBoolean(FIRST_RUN, false).apply();
     }
 }
