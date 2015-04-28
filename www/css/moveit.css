@@ -59,6 +59,14 @@ body .leaderboard {
   margin-bottom: 0px; }
   body .leaderboard .collection {
     padding-left: 4px; }
+    body .leaderboard .collection a {
+      color: black; }
+      body .leaderboard .collection a:visited {
+        color: black; }
+      body .leaderboard .collection a:hover {
+        color: black; }
+      body .leaderboard .collection a:focus {
+        color: black; }
     body .leaderboard .collection .highlight {
       background-color: #f9f4e0; }
     body .leaderboard .collection .collection-item {
@@ -98,6 +106,47 @@ body .leaderboard {
       margin-top: -10px; }
   body .leaderboard .modal .modal-button {
     margin: 20px; }
+body .user-profile .hero-container {
+  position: relative; }
+  body .user-profile .hero-container .foreground {
+    background: url("/img/profile_background02.jpg");
+    height: 300px;
+    width: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat no-repeat; }
+    body .user-profile .hero-container .foreground .valign {
+      margin: 0 auto;
+      text-align: center; }
+      body .user-profile .hero-container .foreground .valign .profile-pic {
+        height: 115px;
+        width: 115px;
+        border: 4px solid white;
+        border-radius: 100%;
+        margin: 0 auto; }
+      body .user-profile .hero-container .foreground .valign .name {
+        margin-top: 10px;
+        font-size: 21px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.66); }
+  body .user-profile .hero-container .contributions {
+    height: 70px;
+    color: rgba(0, 0, 0, 0.66);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16); }
+    body .user-profile .hero-container .contributions .attribute {
+      float: left;
+      width: 50%;
+      height: 70px; }
+      body .user-profile .hero-container .contributions .attribute.amount {
+        border-right: 1px solid rgba(0, 0, 0, 0.16); }
+      body .user-profile .hero-container .contributions .attribute .large-text {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center; }
+      body .user-profile .hero-container .contributions .attribute .description {
+        text-transform: uppercase;
+        text-align: center; }
 
 .container, .monthly-summary {
   padding-top: 25px; }
@@ -140,3 +189,6 @@ a:hover, a:focus {
 
 .bottom-spacing {
   height: 20px; }
+
+.card-panel {
+  color: rgba(0, 0, 0, 0.66); }
