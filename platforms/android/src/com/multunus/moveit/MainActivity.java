@@ -20,6 +20,7 @@
 package com.multunus.moveit;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.multunus.moveit.alarms.DailyAlarms;
@@ -28,16 +29,36 @@ import org.apache.cordova.*;
 
 public class MainActivity extends CordovaActivity
 {
+    public static final String PREFS_NAME = "MoveItPrefs";
+    public static final String FIRST_RUN = "firstRun";
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         super.init();
+        if(firstRun()){
+          setAlarms();
+        }
+        // Set by <content src="index.html" /> in config.xml
+        loadUrl(launchUrl);
+    }
+
+    public void setAlarms(){
         Context context = getApplicationContext();
         DailyAlarms dailyAlarms = new DailyAlarms(context);
         dailyAlarms.setUpAlarms();
-        
-        // Set by <content src="index.html" /> in config.xml
-        loadUrl(launchUrl);
+        didFirstRun();
+    }
+
+    public boolean firstRun(){
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        return settings.getBoolean(FIRST_RUN, true);
+    }
+
+    public void didFirstRun(){
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(FIRST_RUN, false);
     }
 }

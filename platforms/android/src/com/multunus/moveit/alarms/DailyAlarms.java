@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.multunus.moveit.Configuration;
-import com.multunus.moveit.receivers.MorningNotificationReceiver;
 import com.multunus.moveit.receivers.EveningNotificationReceiver;
+import com.multunus.moveit.receivers.MorningNotificationReceiver;
 
 import java.util.Calendar;
 
@@ -35,10 +35,11 @@ public class DailyAlarms {
         calendar.set(Calendar.HOUR_OF_DAY, Configuration.MorningNotification.HOUR);
         calendar.set(Calendar.MINUTE, Configuration.MorningNotification.MINUTE);
         calendar.set(Calendar.SECOND, Configuration.MorningNotification.SECOND);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
     }
 
     protected void setUpEveningAlarm(){
+
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, EveningNotificationReceiver.class);
         PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 1, intent, 0);
@@ -47,6 +48,6 @@ public class DailyAlarms {
         calendar.set(Calendar.HOUR_OF_DAY, Configuration.EveningNotification.HOUR);
         calendar.set(Calendar.MINUTE, Configuration.EveningNotification.MINUTE);
         calendar.set(Calendar.SECOND, Configuration.EveningNotification.SECOND);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
     }
 }
