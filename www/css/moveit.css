@@ -109,7 +109,7 @@ body .leaderboard {
 body .user-profile .hero-container {
   position: relative; }
   body .user-profile .hero-container .foreground {
-    background: url("/img/profile_background02.jpg");
+    background: url("../img/profile_background02.jpg");
     height: 300px;
     width: 100%;
     background-size: cover !important;
@@ -192,3 +192,5 @@ a:hover, a:focus {
 
 .card-panel {
   color: rgba(0, 0, 0, 0.66); }
+
+/*# sourceMappingURL=moveit.css.map */
