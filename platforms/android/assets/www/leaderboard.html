@@ -143,15 +143,15 @@
                  $(".test-mode").removeClass("hidden");
              }
          };
-        function showModalFor(user, lastContribution) {
-          var modalTemplate = $("#modal-template").html();
-          var template = _.template(modalTemplate);
-          $("#leader-board-modal").html(template({amount: user.amount}));
-          $("#leader-board-modal").openModal();
-          $("#leader-board-modal .value").countTo({
-            to: lastContribution
-          });
-        }
+         function showModalFor(user, lastContribution) {
+             var modalTemplate = $("#modal-template").html();
+             var template = _.template(modalTemplate);
+             $("#leader-board-modal").html(template({amount: user.amount}));
+             $("#leader-board-modal").openModal();
+             $("#leader-board-modal .value").countTo({
+                 to: lastContribution
+             });
+         }
          
          $(function() {
              enableTestMode();
@@ -182,14 +182,14 @@
                              title_text = 'YOU';
                              css_class = 'highlight';
                              if(localStorage['lastContribution']){
-                               showModalFor(entry, localStorage['lastContribution']);
-                               localStorage.removeItem('lastContribution');
+                                 showModalFor(entry, localStorage['lastContribution']);
+                                 localStorage.removeItem('lastContribution');
                              }
                          }else{
                              title_text = entry.name;
                              css_class = '';
                          }
-                         entryHTML = '<li class="collection-item avatar row ' + css_class +'"><span class=" col s3"><img src="' + entry.gravatar  +'" alt="" class="circle"></span><span class="item-content"><span class="count s2 col">#' + (index + 1) +'</span><span class="title col s6">' + title_text + '</span><span class="col s4 amount-section"><div class="amount right-align"><span class="symbol">&#8377</span>' + Globalize.format(entry.amount) + '</div><div class="duration right-align">' + entry.duration + 'mins</div></span></span></li>';
+                         entryHTML = '<li class="collection-item avatar row ' + css_class +'"><a href="user_profile.html?email=' + entry.email + '"><span class=" col s3"><img src="' + entry.gravatar  +'" alt="" class="circle"></span><span class="item-content"><span class="count s2 col">#' + (index + 1) +'</span><span class="title col s6">' + title_text + '</span><span class="col s4 amount-section"><div class="amount right-align"><span class="symbol">&#8377</span>' + Globalize.format(entry.amount) + '</div><div class="duration right-align">' + entry.duration + 'mins</div></span></span></A></li>';
                          $('.leaderboard > .row > .collection').append(entryHTML);
                          total_amount += entry.amount;
                      });
