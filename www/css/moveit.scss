@@ -10,6 +10,7 @@ input{
 
 
 body {
+    
     .hidden{
         display: none;
     }
@@ -83,6 +84,18 @@ body {
     .leaderboard{
         margin-bottom: 0px;
         .collection{
+            a{
+                color: rgba(0, 0, 0, 1);
+                &:visited{
+                    color: rgba(0, 0, 0, 1);
+                }
+                &:hover{
+                    color: rgba(0, 0, 0, 1);
+                }
+                &:focus{
+                    color: rgba(0, 0, 0, 1);
+                }
+            }
             padding-left: 4px;
             .highlight{
                 background-color: rgb(249, 244, 224);
@@ -141,6 +154,59 @@ body {
           margin: 20px;
        }
       }
+    }
+    .user-profile{
+        .hero-container{
+            position:relative;
+            .foreground{
+                background: url('/img/profile_background02.jpg');
+                height:300px;
+                width:100%;
+                background-size: cover !important;
+                background-position:center !important;
+                background-repeat: no-repeat no-repeat;
+                .valign{
+                    margin: 0 auto;
+                    text-align: center;
+                    .profile-pic{
+                        height: 115px;
+                        width: 115px;
+                        border: 4px solid white;
+                        border-radius: 100%;
+                        margin: 0 auto;
+                    }
+                    .name{
+                        margin-top: 10px;
+                        font-size: 21px;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.66);
+                    }
+                }
+            }
+            .contributions{
+                height: 70px;
+                color: rgba(0, 0, 0, 0.66);
+                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+                .attribute{
+                    &.amount{
+                        border-right: 1px solid rgba(0, 0, 0, 0.16);
+                    }
+                    float:left;
+                    width: 50%;
+                    height: 70px;
+                    .large-text{
+                        margin-top: 10px;
+                        font-weight: bold;
+                        font-size: 18px;
+                        text-align: center;
+                    }
+                    .description{
+                        text-transform: uppercase;
+                        text-align: center;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -205,4 +271,8 @@ a {
 
 .bottom-spacing{
     height: 20px;
+}
+
+.card-panel{
+    color: rgba(0, 0, 0, 0.66);
 }

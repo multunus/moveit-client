@@ -15,3 +15,10 @@ var enableSaveButtonWith = function(form, text){
   saveBtn.disabled = false;
   saveBtn.textContent = text;
 };
+
+var getParameterByName = function(name, location) {
+  var query_name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + query_name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
