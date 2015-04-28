@@ -4,7 +4,7 @@
     <string name="launcher_name">@string/app_name</string>
     <string name="activity_name">@string/launcher_name</string>
     <string name="morning_notification_title">Time for work out!</string>
-    <string name="morning_notification_text">Let\'s get energized with a 30 min workout</string>
+    <string name="morning_notification_text">Let\'s get energized with a 30 min work out.</string>
     <string name="evening_notification_text">Yes, you can still make time for a 10 min workout. You will feel good afterwards. I promise!</string>
     <string name="evening_notification_title">Work out now?</string>
 </resources>
