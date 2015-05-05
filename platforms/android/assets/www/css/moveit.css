@@ -25,6 +25,10 @@ body nav {
       position: absolute;
       display: inline-block;
       white-space: nowrap; }
+  body nav a i .user_name {
+    font-size: x-large;
+    margin-bottom: 35px;
+    position: absolute; }
 body .container {
   width: 100%;
   padding-top: 0px; }
@@ -55,10 +59,42 @@ body .top-bar {
     body .top-bar .date-and-total .goal-section {
       font-size: 13px;
       color: #bbaa4e; }
+body #timeline.collection {
+  border-top: none; }
+body #timeline .collection-item a {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 10px; }
+  body #timeline .collection-item a .circle {
+    width: 50px;
+    height: 50px; }
+body #timeline .collection-item .description {
+  display: inline-block;
+  vertical-align: middle; }
+  body #timeline .collection-item .description .content {
+    font-size: 18px; }
+  body #timeline .collection-item .description .off-white {
+    color: #b7b7b7; }
 body .leaderboard {
-  margin-bottom: 0px; }
+  margin-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 10px; }
+  body .leaderboard .row {
+    margin-left: -0.15em; }
+    body .leaderboard .row.interaction-message {
+      color: white;
+      font-size: 25px;
+      height: 84px; }
+      body .leaderboard .row.interaction-message span {
+        vertical-align: sub;
+        vertical-align: -webkit-baseline-middle; }
+    body .leaderboard .row.bump {
+      background-color: #43ca01; }
+    body .leaderboard .row.nudge {
+      background-color: #fdc300; }
   body .leaderboard .collection {
-    padding-left: 4px; }
+    padding-left: 4px;
+    margin-top: 0px; }
     body .leaderboard .collection a {
       color: black; }
       body .leaderboard .collection a:visited {
@@ -67,12 +103,23 @@ body .leaderboard {
         color: black; }
       body .leaderboard .collection a:focus {
         color: black; }
+    body .leaderboard .collection .indicator {
+      border-left: 5px;
+      border-left-style: none; }
+      body .leaderboard .collection .indicator.active-user {
+        border-left-style: solid;
+        border-left-color: #43ca01; }
+      body .leaderboard .collection .indicator.inactive-user {
+        border-left-style: solid;
+        border-left-color: #fdc300; }
     body .leaderboard .collection .highlight {
       background-color: #f9f4e0; }
     body .leaderboard .collection .collection-item {
       padding: 20px 20px; }
       body .leaderboard .collection .collection-item.avatar {
         padding-left: 52px; }
+      body .leaderboard .collection .collection-item .highlight {
+        background-color: #f9f4e0; }
       body .leaderboard .collection .collection-item .item-content {
         margin-top: 6px;
         margin-left: 10px;
@@ -192,5 +239,3 @@ a:hover, a:focus {
 
 .card-panel {
   color: rgba(0, 0, 0, 0.66); }
-
-/*# sourceMappingURL=moveit.css.map */

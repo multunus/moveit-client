@@ -1,13 +1,12 @@
 $moveit-primary-color: rgb(253, 195, 0);
 $moveit-secondary-color: rgb(254, 230, 108);
-$button-color: rgb(67, 202, 1);
+$green: rgb(67, 202, 1);
 $disabled-text: rgb(188, 188, 188);
 
 
 input{
     background-color: transparent !important;
 }
-
 
 body {
     
@@ -37,6 +36,15 @@ body {
                 position: absolute;
                 display: inline-block;
                 white-space: nowrap;
+            }
+        }
+        a{
+            i{
+                .user_name{
+                    font-size: x-large;
+                    margin-bottom: 35px;
+                    position: absolute;
+                }
             }
         }
     }
@@ -81,9 +89,59 @@ body {
             }
         }
     }
+    #timeline{
+        &.collection{
+            border-top:none;
+        }
+        .collection-item{
+            a{
+                cursor:pointer;
+                display: inline-block;
+                margin-right: 10px;
+                .circle{
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+            .description{
+                display: inline-block;
+                vertical-align: middle;
+                .content{
+                    font-size: 18px;
+                }
+                .time-ago{
+                }
+                .off-white{
+                    color: rgba(183, 183, 183, 1);
+                }
+            }
+        }
+    }
     .leaderboard{
         margin-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 10px;
+        .row{
+            margin-left: -0.15em;
+            &.interaction-message{
+                color: white;
+                font-size: 25px;
+                height: 84px;
+                span{
+                    vertical-align: sub;
+                    vertical-align: -webkit-baseline-middle;
+                }
+            }
+            &.bump{
+                background-color:  $green;  
+            }
+            &.nudge{
+                background-color:  $moveit-primary-color;  
+            }
+        }
         .collection{
+            padding-left: 4px;
+            margin-top: 0px;
             a{
                 color: rgba(0, 0, 0, 1);
                 &:visited{
@@ -96,7 +154,21 @@ body {
                     color: rgba(0, 0, 0, 1);
                 }
             }
-            padding-left: 4px;
+
+            .indicator{
+                border-left: 5px;
+                border-left-style: none;
+                &.active-user{
+                    border-left-style: solid;
+                    border-left-color: $green;  
+                }
+                &.inactive-user{
+                    border-left-style: solid;
+                    border-left-color: $moveit-primary-color;
+                }
+                
+            }
+            
             .highlight{
                 background-color: rgb(249, 244, 224);
             }
@@ -105,6 +177,11 @@ body {
                 &.avatar{
                     padding-left: 52px;   
                 }
+
+                .highlight{
+                    background-color: rgb(249, 244, 224);
+                }
+                
                 .item-content{
                     margin-top: 6px;
                     margin-left: 10px;
@@ -133,31 +210,31 @@ body {
                 
             }
         }
-      .modal {
-        .modal-header {
-          background: $moveit-secondary-color;
-          height: 80px;
-          h5 {
-            width: 100%;
-          }
-        }
-        .amount {
-            margin: 5% 0;
-            font-size: 5em;
-            .help-text {
-              display: block;
-              font-size: 0.5em;
-              margin-top: -10px;
+        .modal {
+            .modal-header {
+                background: $moveit-secondary-color;
+                height: 80px;
+                h5 {
+                    width: 100%;
+                }
+            }
+            .amount {
+                margin: 5% 0;
+                font-size: 5em;
+                .help-text {
+                    display: block;
+                    font-size: 0.5em;
+                    margin-top: -10px;
+                }
+            }
+            .modal-button{
+                margin: 20px;
             }
         }
-       .modal-button{
-          margin: 20px;
-       }
-      }
     }
     .user-profile{
         .hero-container{
-            position:relative;
+            position: relative;
             .foreground{
                 background: url('../img/profile_background02.jpg');
                 height:300px;
@@ -242,11 +319,11 @@ body {
 }
 
 .btn-primary{
-    background-color: $button-color;
+    background-color: $green;
     color: white;
     height: 48px;
     &:hover {
-        background-color: $button-color;
+        background-color: $green;
     }
 }
 

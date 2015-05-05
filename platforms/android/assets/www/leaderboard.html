@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <link rel="stylesheet" href="css/materialize.min.css">
         <link rel="stylesheet" href="css/moveit.css">
         <!--Let browser know website is optimized for mobile-->
@@ -17,14 +16,14 @@
             <div class="nav-wrapper">
                 <a href="#" data-activates="mobile-demo" class="button-collapse burger-menu"><i class="mdi-navigation-menu"><span>Leaderboard</span></i></a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="login.html">Profile</a></li>
+                    <li><a href="timeline.html">Timeline</a></li>
                     <li><a href="index.html">Add Entry</a></li>
                     <li><a href="monthly_summary.html">Monthly Summary</a></li>
                     <li class="active"><a href="leaderboard.html">Leaderboard</a></li>
                     <li><a href="settings.html">Settings</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                    <li><a href="login.html">Profile</a></li>
+                    <li><a href="timeline.html">Timeline</a></li>
                     <li><a href="index.html">Add Entry</a></li>
                     <li><a href="monthly_summary.html">Monthly Summary</a></li>
                     <li class="active"><a href="leaderboard.html">Leaderboard</a></li>
@@ -103,7 +102,8 @@
                     
                 </ul>
             </div>
-            <div id="leader-board-modal" class="modal"></div>
+            <div id="leader-board-modal" class="modal">
+            </div>
         </div>
         <div class="bottom-spacing">
         </div>
@@ -125,6 +125,35 @@
                 <button class="btn btn-primary save-btn col s12 modal-action modal-close">I Feel Gooood!</button>
               </div>
         </script>
+        <script type="text/template" id="user-details-template">
+            <div class="drag-items">
+                <li class="collection-item row hidden interaction-message bump">
+                    <span>Bumping <%= title_text %></span>
+                </li>
+                <li class="collection-item row hidden interaction-message nudge">
+                    <span>Nudging <%= title_text %></span>
+                </li>
+                <li class="collection-item avatar row <%= css_class %> draggable-section indicator <%= activity_status %>" data-email="<%= email %>" data-name="<%= title_text %>" data-activity="<%= activity_status %>">
+                    <a href="user_profile.html?email=<%= email %>">
+                        <span class=" col s3"><img src="<%= gravatar %>" alt="" class="circle"></span>
+                        <span class="item-content">
+                            <span class="count s2 col">#<%= index %></span>
+                            <span class="title col s6"> <%= title_text %> </span>
+                            <span class="col s4 amount-section">
+                                <div class="amount right-align">
+                                    <span class="symbol">&#8377</span>
+                                    <%= amount %>
+                                </div>
+                                <div class="duration right-align">
+                                    <%= duration %>mins
+                                </div>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+            </div>
+        </script>
+        
         <script src="js/jquery-2.1.1.min.js"></script>
         <script src="js/jquery-count-to.js"></script>
         <script src="js/jquery-url-params.js"></script>
@@ -133,16 +162,22 @@
         <script src="js/moment.min.js"></script>
         <script src="js/globalize.min.js"></script>
         <script src="js/globalize.culture.as-IN.min.js"></script>
+        <script src="js/hammer.min.js"></script>
+        <script src="js/jquery.hammer.js"></script>
         <script src="js/moveit.js"></script>
         <script src="js/settings.js"></script>
+        
 
         <script>
+         window.total_amount = 0;
+         
          function enableTestMode(){
              var settings = JSON.parse(localStorage.getItem("settings")) || {};
              if(settings.mode === "test"){
                  $(".test-mode").removeClass("hidden");
              }
          };
+         
          function showModalFor(user, lastContribution) {
              var modalTemplate = $("#modal-template").html();
              var template = _.template(modalTemplate);
@@ -150,6 +185,42 @@
              $("#leader-board-modal").openModal();
              $("#leader-board-modal .value").countTo({
                  to: lastContribution
+             });
+         }
+
+         function fillUserDetails(data){
+             var title_text = '';
+             var css_class = '';
+             var activity_status = "";
+             _.each(data.leaderboard, function(userDetails, index){
+                 if(userDetails.email === localStorage["userEmail"]){
+                     title_text = 'YOU';
+                     css_class = 'highlight';
+                     if(localStorage['lastContribution']){
+                         showModalFor(userDetails, localStorage['lastContribution']);
+                         localStorage.removeItem('lastContribution');
+                     }
+                 }else{
+                     title_text = userDetails.name;
+                     css_class = '';
+                 }
+                 console.log(userDetails.activity_status);
+                 
+                 var userTemplate = $("#user-details-template").html();
+                 var templateData = {
+                     "css_class": css_class,
+                     "activity_status": userDetails.activity_status + '-user',
+                     "index": index + 1,
+                     "gravatar" : userDetails.gravatar,
+                     "title_text" : title_text,
+                     "amount": Globalize.format(userDetails.amount),
+                     "duration": userDetails.duration,
+                     "email": userDetails.email
+                 };
+                 window.total_amount += userDetails.amount;
+                 $(".user_name").text(userDetails.name);
+                 var processedTemplate = _.template(userTemplate);
+                 $('.leaderboard > .row > .collection').append(processedTemplate(templateData));
              });
          }
          
@@ -167,44 +238,38 @@
                  month: current_month
              }
              
-             var total_amount = 0;
-             var title_text = '';
-             var css_class = '';
+             
              $.ajax({
                  dataType: 'json',
                  url: settings.getSetting("apiUrl") + 'leaderboard',
                  type: 'GET',
                  data: data,
                  success: function(data, textStatus, jqXHR) {
-                     console.log(data);
-                     _.each(data.leaderboard, function(entry, index){
-                         if(entry.email === localStorage["userEmail"]){
-                             title_text = 'YOU';
-                             css_class = 'highlight';
-                             if(localStorage['lastContribution']){
-                                 showModalFor(entry, localStorage['lastContribution']);
-                                 localStorage.removeItem('lastContribution');
-                             }
-                         }else{
-                             title_text = entry.name;
-                             css_class = '';
-                         }
-                         entryHTML = '<li class="collection-item avatar row ' + css_class +'"><a href="user_profile.html?email=' + entry.email + '"><span class=" col s3"><img src="' + entry.gravatar  +'" alt="" class="circle"></span><span class="item-content"><span class="count s2 col">#' + (index + 1) +'</span><span class="title col s6">' + title_text + '</span><span class="col s4 amount-section"><div class="amount right-align"><span class="symbol">&#8377</span>' + Globalize.format(entry.amount) + '</div><div class="duration right-align">' + entry.duration + 'mins</div></span></span></A></li>';
-                         $('.leaderboard > .row > .collection').append(entryHTML);
-                         total_amount += entry.amount;
-                     });
+                     fillUserDetails(data);
                      $(".loading-throbber").hide();
-                     $('.total-amount > .value').html(Globalize.format(total_amount));
+                     $('.total-amount > .value').html(Globalize.format(window.total_amount));
                      $('.goal-section > .goal').text(Globalize.format(data.monthly_goal));
-                     Materialize.showStaggeredList('.collection')
+                     Materialize.showStaggeredList('.collection');
+                     bindSwipe();
                  },
                  error: function() {
                      $(".loading-throbber").hide();
                      alert('Opps Something Went Wrong!');
                  },
-                 timeout: 30000
+                 timeout: 300000
              });
          });
+
+         function bindSwipe(){
+             var from_user_email = localStorage.getItem("userEmail");
+             $('.draggable-section').not(".not_so_active-user").hammer().bind('swiperight', function(el){
+                 console.log("swipe right");
+                 var to_user_email = $(this).data("email");
+                 var activity = $(this).data("activity") === "active-user" ? "bump" : "nudge"
+                 var name = $(this).data("name");
+                 UserInteraction.action(from_user_email, to_user_email, $(this), activity, name);
+             })
+         }
         </script>
     </body>
 </html>
