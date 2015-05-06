@@ -25,39 +25,44 @@ var getParameterByName = function(name, location) {
 
 var UserInteraction = {
   action: function(fromEmail, toEmail, draggable, action, name){
-    draggable.animate({
-      left: '+=400px'
-    }, 250);
 
-    draggable.siblings('.interaction-message.' + action).removeClass('hidden');
-    draggable.hide();
-
-    var data = {
-      from_email_id : fromEmail,
-      to_email_id : toEmail
-    };
-
-    $.ajax({
-      dataType: 'json',
-      url: settings.getSetting("userApiUrl") + action,
-      type: 'POST',
-      data: data,
-      success: function(data, textStatus, jqXHR) {
-        console.log(action + "ing....");
-        Materialize.toast("You " + action + "'d " + name, 2000);
-      },
-      error: function() {
-        Materialize.toast("Oops, something went wrong", 2000);
-      }
-    });
-
-    setTimeout(function(){
-      draggable.show();
+    if(fromEmail != toEmail && action != ''){
       draggable.animate({
-        left: '-=400px'
+        left: '+=400px'
       }, 250);
-      draggable.siblings('.interaction-message.' + action).addClass('hidden');
-    }, 500);
+
+      draggable.siblings('.interaction-message.' + action).removeClass('hidden');
+      draggable.hide();
+
+      var data = {
+        from_email_id : fromEmail,
+        to_email_id : toEmail
+      };
+
+      $.ajax({
+        dataType: 'json',
+        url: settings.getSetting("userApiUrl") + action,
+        type: 'POST',
+        data: data,
+        success: function(data, textStatus, jqXHR) {
+          console.log(action + "ing....");
+          Materialize.toast("You " + action + "'d " + name, 2000);
+          draggable.unbind("swiperight");
+          draggable.addClass('blank');
+        },
+        error: function() {
+          Materialize.toast("Oops, something went wrong", 2000);
+        }
+      });
+
+      setTimeout(function(){
+        draggable.show();
+        draggable.animate({
+          left: '-=400px'
+        }, 250);
+        draggable.siblings('.interaction-message.' + action).addClass('hidden');
+      }, 500);
+    }
   }
 };
 

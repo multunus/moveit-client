@@ -209,7 +209,7 @@
                  var userTemplate = $("#user-details-template").html();
                  var templateData = {
                      "css_class": css_class,
-                     "activity_status": userDetails.activity_status + '-user',
+                     "activity_status": userDetails.interactable + '-user',
                      "index": index + 1,
                      "gravatar" : userDetails.gravatar,
                      "title_text" : title_text,
@@ -234,8 +234,10 @@
              }
              current_month = moment().endOf('month').format('MMMM YYYY');
              $('.date').text(current_month);
+             currentUser = localStorage.getItem("userEmail");
              var data = {
-                 month: current_month
+                 month: current_month,
+                 user_email: currentUser
              }
              
              
@@ -265,7 +267,13 @@
              $('.draggable-section').not(".not_so_active-user").hammer().bind('swiperight', function(el){
                  console.log("swipe right");
                  var to_user_email = $(this).data("email");
-                 var activity = $(this).data("activity") === "active-user" ? "bump" : "nudge"
+                 var activity = '';
+                 if($(this).data("activity") === "active-user" ){
+                     activity = "bump";
+                     
+                 }else if($(this).data("activity") === "inactive-user" ){
+                     activity = "nudge"
+                 }
                  var name = $(this).data("name");
                  UserInteraction.action(from_user_email, to_user_email, $(this), activity, name);
              })
