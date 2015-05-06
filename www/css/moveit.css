@@ -112,6 +112,8 @@ body .leaderboard {
       body .leaderboard .collection .indicator.inactive-user {
         border-left-style: solid;
         border-left-color: #fdc300; }
+      body .leaderboard .collection .indicator.blank {
+        border-left-style: none; }
     body .leaderboard .collection .highlight {
       background-color: #f9f4e0; }
     body .leaderboard .collection .collection-item {

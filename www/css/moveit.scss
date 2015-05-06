@@ -166,6 +166,9 @@ body {
                     border-left-style: solid;
                     border-left-color: $moveit-primary-color;
                 }
+                &.blank{
+                    border-left-style: none;
+                }
                 
             }
             
