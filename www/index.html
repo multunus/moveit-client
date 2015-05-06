@@ -72,8 +72,11 @@
              
 
              datePicker = $('.datepicker').pickadate({
-                 selectMonths: false
+                 selectMonths: false,
+                 max: moment()
              });
+             
+
 
              $('#date').val(moment().format('D MMMM, YYYY'));
              
