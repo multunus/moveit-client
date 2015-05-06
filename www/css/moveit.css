@@ -88,9 +88,9 @@ body .leaderboard {
       body .leaderboard .row.interaction-message span {
         vertical-align: sub;
         vertical-align: -webkit-baseline-middle; }
-    body .leaderboard .row.bump {
+    body .leaderboard .row.bumping {
       background-color: #43ca01; }
-    body .leaderboard .row.nudge {
+    body .leaderboard .row.nudgeing {
       background-color: #fdc300; }
   body .leaderboard .collection {
     padding-left: 4px;
@@ -104,16 +104,20 @@ body .leaderboard {
       body .leaderboard .collection a:focus {
         color: black; }
     body .leaderboard .collection .indicator {
-      border-left: 5px;
-      border-left-style: none; }
-      body .leaderboard .collection .indicator.active-user {
-        border-left-style: solid;
-        border-left-color: #43ca01; }
-      body .leaderboard .collection .indicator.inactive-user {
-        border-left-style: solid;
-        border-left-color: #fdc300; }
-      body .leaderboard .collection .indicator.blank {
-        border-left-style: none; }
+      margin-top: 1px;
+      margin-bottom: 1px; }
+      body .leaderboard .collection .indicator.active-user img {
+        border: 3px solid #43ca01; }
+      body .leaderboard .collection .indicator.inactive-user img {
+        border: 3px solid #fdc300; }
+      body .leaderboard .collection .indicator.blank img {
+        border: none; }
+      body .leaderboard .collection .indicator.bump {
+        border-left: 5px solid #43ca01; }
+      body .leaderboard .collection .indicator.nudge {
+        border-left: 5px solid #fdc300; }
+      body .leaderboard .collection .indicator.none, body .leaderboard .collection .indicator[data-name=YOU] {
+        border-left: none; }
     body .leaderboard .collection .highlight {
       background-color: #f9f4e0; }
     body .leaderboard .collection .collection-item {
@@ -241,3 +245,5 @@ a:hover, a:focus {
 
 .card-panel {
   color: rgba(0, 0, 0, 0.66); }
+
+/*# sourceMappingURL=moveit.css.map */

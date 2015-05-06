@@ -132,10 +132,10 @@ body {
                     vertical-align: -webkit-baseline-middle;
                 }
             }
-            &.bump{
+            &.bumping{
                 background-color:  $green;  
             }
-            &.nudge{
+            &.nudgeing{
                 background-color:  $moveit-primary-color;  
             }
         }
@@ -156,18 +156,35 @@ body {
             }
 
             .indicator{
-                border-left: 5px;
-                border-left-style: none;
+                margin-top: 1px;
+                margin-bottom: 1px;
+                
                 &.active-user{
-                    border-left-style: solid;
-                    border-left-color: $green;  
+                    img{
+                        border: 3px solid $green;
+                    } 
                 }
                 &.inactive-user{
-                    border-left-style: solid;
-                    border-left-color: $moveit-primary-color;
+                    img{
+                        border: 3px solid $moveit-primary-color;
+                    } 
                 }
                 &.blank{
-                    border-left-style: none;
+                    img{
+                        border: none;
+                    }
+                }
+
+                &.bump{
+                    border-left: 5px solid $green;
+                }
+
+                &.nudge{
+                    border-left: 5px solid $moveit-primary-color;
+                }
+
+                &.none, &[data-name=YOU]{
+                    border-left: none;
                 }
                 
             }
