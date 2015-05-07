@@ -1,6 +1,6 @@
 $moveit-primary-color: rgb(253, 195, 0);
 $moveit-secondary-color: rgb(254, 230, 108);
-$button-color: rgb(67, 202, 1);
+$green: rgb(67, 202, 1);
 $disabled-text: rgb(188, 188, 188);
 
 
@@ -8,8 +8,23 @@ input{
     background-color: transparent !important;
 }
 
-
 body {
+    
+    .hidden{
+        display: none;
+    }
+    .test-mode{
+        position: fixed;
+        width: 100%;
+        height: 20px;
+        font-size: 12px;
+        padding: 2px;
+        background-color: rgb(119, 224, 119);
+        bottom: 0px;
+        left: 0px;
+        text-align: center;
+        z-index: 100;
+    }
     nav{
         background-color: $moveit-primary-color;
         .burger-menu{ 
@@ -21,6 +36,15 @@ body {
                 position: absolute;
                 display: inline-block;
                 white-space: nowrap;
+            }
+        }
+        a{
+            i{
+                .user_name{
+                    font-size: x-large;
+                    margin-bottom: 35px;
+                    position: absolute;
+                }
             }
         }
     }
@@ -65,10 +89,106 @@ body {
             }
         }
     }
+    #timeline{
+        &.collection{
+            border-top:none;
+        }
+        .collection-item{
+            a{
+                cursor:pointer;
+                display: inline-block;
+                margin-right: 10px;
+                .circle{
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+            .description{
+                display: inline-block;
+                vertical-align: middle;
+                .content{
+                    font-size: 18px;
+                }
+                .time-ago{
+                }
+                .off-white{
+                    color: rgba(183, 183, 183, 1);
+                }
+            }
+        }
+    }
     .leaderboard{
         margin-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 10px;
+        .row{
+            margin-left: -0.15em;
+            &.interaction-message{
+                color: white;
+                font-size: 25px;
+                height: 84px;
+                span{
+                    vertical-align: sub;
+                    vertical-align: -webkit-baseline-middle;
+                }
+            }
+            &.bumping{
+                background-color:  $green;  
+            }
+            &.nudgeing{
+                background-color:  $moveit-primary-color;  
+            }
+        }
         .collection{
             padding-left: 4px;
+            margin-top: 0px;
+            a{
+                color: rgba(0, 0, 0, 1);
+                &:visited{
+                    color: rgba(0, 0, 0, 1);
+                }
+                &:hover{
+                    color: rgba(0, 0, 0, 1);
+                }
+                &:focus{
+                    color: rgba(0, 0, 0, 1);
+                }
+            }
+
+            .indicator{
+                margin-top: 1px;
+                margin-bottom: 1px;
+                
+                &.active-user{
+                    img{
+                        border: 3px solid $green;
+                    } 
+                }
+                &.inactive-user{
+                    img{
+                        border: 3px solid $moveit-primary-color;
+                    } 
+                }
+                &.blank{
+                    img{
+                        border: none;
+                    }
+                }
+
+                &.bump{
+                    border-left: 5px solid $green;
+                }
+
+                &.nudge{
+                    border-left: 5px solid $moveit-primary-color;
+                }
+
+                &.none, &[data-name=YOU]{
+                    border-left: none;
+                }
+                
+            }
+            
             .highlight{
                 background-color: rgb(249, 244, 224);
             }
@@ -77,6 +197,11 @@ body {
                 &.avatar{
                     padding-left: 52px;   
                 }
+
+                .highlight{
+                    background-color: rgb(249, 244, 224);
+                }
+                
                 .item-content{
                     margin-top: 6px;
                     margin-left: 10px;
@@ -103,6 +228,80 @@ body {
                     }
                 }
                 
+            }
+        }
+        .modal {
+            .modal-header {
+                background: $moveit-secondary-color;
+                height: 80px;
+                h5 {
+                    width: 100%;
+                }
+            }
+            .amount {
+                margin: 5% 0;
+                font-size: 5em;
+                .help-text {
+                    display: block;
+                    font-size: 0.5em;
+                    margin-top: -10px;
+                }
+            }
+            .modal-button{
+                margin: 20px;
+            }
+        }
+    }
+    .user-profile{
+        .hero-container{
+            position: relative;
+            .foreground{
+                background: url('../img/profile_background02.jpg');
+                height:300px;
+                width:100%;
+                background-size: cover !important;
+                background-position:center !important;
+                background-repeat: no-repeat no-repeat;
+                .valign{
+                    margin: 0 auto;
+                    text-align: center;
+                    .profile-pic{
+                        height: 115px;
+                        width: 115px;
+                        border: 4px solid white;
+                        border-radius: 100%;
+                        margin: 0 auto;
+                    }
+                    .name{
+                        margin-top: 10px;
+                        font-size: 21px;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.66);
+                    }
+                }
+            }
+            .contributions{
+                height: 70px;
+                color: rgba(0, 0, 0, 0.66);
+                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+                .attribute{
+                    &.amount{
+                        border-right: 1px solid rgba(0, 0, 0, 0.16);
+                    }
+                    float:left;
+                    width: 50%;
+                    height: 70px;
+                    .large-text{
+                        margin-top: 10px;
+                        font-weight: bold;
+                        font-size: 18px;
+                        text-align: center;
+                    }
+                    .description{
+                        text-transform: uppercase;
+                        text-align: center;
+                    }
+                }
             }
         }
     }
@@ -140,11 +339,11 @@ body {
 }
 
 .btn-primary{
-    background-color: $button-color;
+    background-color: $green;
     color: white;
     height: 48px;
     &:hover {
-        background-color: $button-color;
+        background-color: $green;
     }
 }
 
@@ -169,4 +368,8 @@ a {
 
 .bottom-spacing{
     height: 20px;
+}
+
+.card-panel{
+    color: rgba(0, 0, 0, 0.66);
 }

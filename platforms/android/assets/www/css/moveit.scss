@@ -110,6 +110,11 @@ body {
                     font-size: 18px;
                 }
                 .time-ago{
+                    img{
+                        width: 22px;
+                        height: 17px;
+                        margin-right: 6px;
+                    }
                 }
                 .off-white{
                     color: rgba(183, 183, 183, 1);
@@ -132,10 +137,10 @@ body {
                     vertical-align: -webkit-baseline-middle;
                 }
             }
-            &.bump{
+            &.bumping{
                 background-color:  $green;  
             }
-            &.nudge{
+            &.nudgeing{
                 background-color:  $moveit-primary-color;  
             }
         }
@@ -156,15 +161,35 @@ body {
             }
 
             .indicator{
-                border-left: 5px;
-                border-left-style: none;
+                margin-top: 1px;
+                margin-bottom: 1px;
+                
                 &.active-user{
-                    border-left-style: solid;
-                    border-left-color: $green;  
+                    img{
+                        border: 3px solid $green;
+                    } 
                 }
                 &.inactive-user{
-                    border-left-style: solid;
-                    border-left-color: $moveit-primary-color;
+                    img{
+                        border: 3px solid $moveit-primary-color;
+                    } 
+                }
+                &.blank{
+                    img{
+                        border: none;
+                    }
+                }
+
+                &.bump{
+                    border-left: 5px solid $green;
+                }
+
+                &.nudge{
+                    border-left: 5px solid $moveit-primary-color;
+                }
+
+                &.none, &[data-name=YOU]{
+                    border-left: none;
                 }
                 
             }
