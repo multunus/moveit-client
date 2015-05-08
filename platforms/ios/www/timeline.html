@@ -106,8 +106,11 @@
                  success: function(data, textStatus, jqXHR){
                      appendInteractions(data);
                      markNotificationsAsRead();
+                     $('.loading-throbber').hide();
                  },
                  error: function(){
+                     $('.loading-throbber').hide();
+                     alert("Connection timed out");
                  },
                  timeout: 30000
              });
@@ -136,7 +139,7 @@
                  $(".test-mode").removeClass("hidden");
              }
          };
-
+         
          function markNotificationsAsRead(){
              var unreadNotifications = $('.notification-read.false');
              var unreadNotificationIds = $.map(unreadNotifications, function(element){ return $(element).data("notification_id")});
@@ -153,9 +156,7 @@
                  success: function(data, textStatus, jqXHR){
                  },
                  error: function(){
-                     setTimeout(function(){
-                         unreadNotifications.addClass("true").removeClass("false");
-                     }, 5000);
+                     alert("Connection timed out");
                  },
                  timeout: 30000
              }); 
