@@ -94,6 +94,15 @@ body {
             border-top:none;
         }
         .collection-item{
+            &.notification-read{
+                &.false{
+                    background-color: #FFFFFF;
+                }
+                &.true{
+                    background-color: rgba(242, 241, 241, 1);
+                }
+            }
+            
             a{
                 cursor:pointer;
                 display: inline-block;

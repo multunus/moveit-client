@@ -61,6 +61,10 @@ body .top-bar {
       color: #bbaa4e; }
 body #timeline.collection {
   border-top: none; }
+body #timeline .collection-item.notification-read.false {
+  background-color: #FFFFFF; }
+body #timeline .collection-item.notification-read.true {
+  background-color: #f2f1f1; }
 body #timeline .collection-item a {
   cursor: pointer;
   display: inline-block;
