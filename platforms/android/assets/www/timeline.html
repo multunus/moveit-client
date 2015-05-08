@@ -38,15 +38,15 @@
             </div>
         </nav>
         <script type="text/html" id="activity-item-template">
-            <li class="collection-item row">
+            <li class="collection-item row notification-read <%= notification_read %>" data-notification_id="<%= notification_id %>">
                 <a href="user_profile.html?email=<%= email %>">
                     <img src="<%= gravatarUrl %>" class="circle">
                 </a>
                 <span class="description">
                     <div class="content">
                         <span class="subject"><%= name %></span>
-                        <span class="action off-white"><%= action %></span>
-                        <span class="object off-white">you</span>
+                        <span class="action"><%= action %></span>
+                        <span class="object">you</span>
                     </div>
                     <div class="time-ago off-white">
                         <span class="interaction-icon"> <img src="img/<%=action %>.png"></span><span><%= time_ago %> ago</span>
@@ -104,7 +104,8 @@
                  type: 'GET',
                  data: data,
                  success: function(data, textStatus, jqXHR){
-                     appendInteractions(data);   
+                     appendInteractions(data);
+                     markNotificationsAsRead();
                  },
                  error: function(){
                  },
@@ -116,11 +117,13 @@
              var activityTemplate = $("#activity-item-template").html();
              _.each(data, function(dataItem){
                  var templateData = {
+                     notification_id: dataItem.id,
                      email: dataItem.email,
                      name: dataItem.name,
                      gravatarUrl: dataItem.gravatar_url,
                      action: dataItem.type,
-                     time_ago: dataItem.timestamp
+                     time_ago: dataItem.timestamp,
+                     notification_read: dataItem.notification_read
                  }
                  var processedTemplate = _.template(activityTemplate);
                  $("#timeline").append(processedTemplate(templateData));
@@ -133,6 +136,30 @@
                  $(".test-mode").removeClass("hidden");
              }
          };
+
+         function markNotificationsAsRead(){
+             var unreadNotifications = $('.notification-read.false');
+             var unreadNotificationIds = $.map(unreadNotifications, function(element){ return $(element).data("notification_id")});
+             console.log(unreadNotificationIds);
+             data = {
+                 "interaction_ids" : unreadNotificationIds
+             }
+             
+             $.ajax({
+                 dataType: 'json',
+                 url: settings.getSetting("userApiUrl") + 'notifications/read',
+                 type: "PUT",
+                 data: JSON.stringify(data),
+                 success: function(data, textStatus, jqXHR){
+                 },
+                 error: function(){
+                     setTimeout(function(){
+                         unreadNotifications.addClass("true").removeClass("false");
+                     }, 5000);
+                 },
+                 timeout: 30000
+             }); 
+         }
         </script>
     </body>
 </html>
