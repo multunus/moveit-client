@@ -114,18 +114,20 @@ body .leaderboard {
     body .leaderboard .collection .indicator {
       margin-top: 1px;
       margin-bottom: 1px; }
-      body .leaderboard .collection .indicator.active-user img {
+      body .leaderboard .collection .indicator.active-user .profile-pic {
         border: 3px solid #43ca01; }
-      body .leaderboard .collection .indicator.inactive-user img {
+      body .leaderboard .collection .indicator.inactive-user .profile-pic {
         border: 3px solid #fdc300; }
-      body .leaderboard .collection .indicator.blank img {
+      body .leaderboard .collection .indicator.blank .profile-pic {
         border: none; }
-      body .leaderboard .collection .indicator.bump {
-        border-left: 5px solid #43ca01; }
-      body .leaderboard .collection .indicator.nudge {
-        border-left: 5px solid #fdc300; }
-      body .leaderboard .collection .indicator.none, body .leaderboard .collection .indicator[data-name=YOU] {
-        border-left: none; }
+      body .leaderboard .collection .indicator .action.bump, body .leaderboard .collection .indicator .action.nudge, body .leaderboard .collection .indicator .action.none {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 9px;
+        height: 100%; }
+      body .leaderboard .collection .indicator[data-name=YOU] .action {
+        display: none; }
     body .leaderboard .collection .highlight {
       background-color: #f9f4e0; }
     body .leaderboard .collection .collection-item {

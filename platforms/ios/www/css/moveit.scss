@@ -174,31 +174,35 @@ body {
                 margin-bottom: 1px;
                 
                 &.active-user{
-                    img{
+                    .profile-pic{
                         border: 3px solid $green;
                     } 
                 }
                 &.inactive-user{
-                    img{
+                    .profile-pic{
                         border: 3px solid $moveit-primary-color;
                     } 
                 }
                 &.blank{
-                    img{
+                    .profile-pic{
                         border: none;
                     }
                 }
 
-                &.bump{
-                    border-left: 5px solid $green;
+                .action{
+                    &.bump, &.nudge, &.none {
+                        position: absolute;
+                        left: 0px;
+                        top: 0px;
+                        width: 9px;
+                        height: 100%
+                    }
                 }
 
-                &.nudge{
-                    border-left: 5px solid $moveit-primary-color;
-                }
-
-                &.none, &[data-name=YOU]{
-                    border-left: none;
+                &[data-name=YOU]{
+                    .action{
+                        display: none;
+                    }
                 }
                 
             }
