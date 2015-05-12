@@ -69,10 +69,13 @@
              if(_.isEmpty(localStorage['userEmail'])){
                  window.location = "login.html";
              }
+             
 
-             var datePicker = $('.datepicker').pickadate({
-                 selectMonths: false // Creates a dropdown to control month
+             datePicker = $('.datepicker').pickadate({
+                 selectMonths: false
              });
+
+             $('#date').val(moment().format('D MMMM, YYYY'));
              
              $("form").submit(function(e) {
                  var form = this;
