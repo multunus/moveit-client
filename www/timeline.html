@@ -84,6 +84,13 @@
         <!-- End Google Analytics -->
 
         <script>
+         $(document).on("resume", onResume, false);
+
+         function onResume(){
+             location.reload();
+         }
+
+         
          $(function() {
              $(".button-collapse").sideNav();
 
@@ -106,8 +113,6 @@
                  success: function(data, textStatus, jqXHR){
                      appendInteractions(data);
                      markNotificationsAsRead();
-                 },
-                 error: function(){
                  },
                  timeout: 30000
              });
@@ -136,7 +141,7 @@
                  $(".test-mode").removeClass("hidden");
              }
          };
-
+         
          function markNotificationsAsRead(){
              var unreadNotifications = $('.notification-read.false');
              var unreadNotificationIds = $.map(unreadNotifications, function(element){ return $(element).data("notification_id")});
@@ -153,9 +158,6 @@
                  success: function(data, textStatus, jqXHR){
                  },
                  error: function(){
-                     setTimeout(function(){
-                         unreadNotifications.addClass("true").removeClass("false");
-                     }, 5000);
                  },
                  timeout: 30000
              }); 

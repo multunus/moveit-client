@@ -48,7 +48,7 @@ var UserInteraction = {
           console.log(action + "ing....");
           Materialize.toast("You " + action + "'d " + name, 2000);
           draggable.unbind("swiperight");
-          draggable.addClass('none');
+          draggable.find('.action').removeClass(action).addClass('none');
         },
         error: function() {
           Materialize.toast("Please check your internet connection.", 3000);

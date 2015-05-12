@@ -107,9 +107,15 @@
 
         </script>
         <!-- End Google Analytics -->
-
+            
         
         <script>
+         $(document).on("resume", onResume, false);
+
+         function onResume(){
+             location.reload();
+         }
+         
          $(function() {
              $(".loading-throbber").show();
              $(".button-collapse").sideNav();

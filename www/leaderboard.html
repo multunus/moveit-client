@@ -56,47 +56,47 @@
         <div class="container leaderboard">
             <div class="row">
                 <div class="loading-throbber col s12 center">
-                        <div class="preloader-wrapper small active">
-                            <div class="spinner-layer spinner-blue">
-                                <div class="circle-clipper left">
-                                    <div class="circle"></div>
-                                </div><div class="gap-patch">
-                                    <div class="circle"></div>
-                                </div><div class="circle-clipper right">
-                                    <div class="circle"></div>
-                                </div>
-                            </div>
-
-                            <div class="spinner-layer spinner-red">
-                                <div class="circle-clipper left">
-                                    <div class="circle"></div>
-                                </div><div class="gap-patch">
-                                    <div class="circle"></div>
-                                </div><div class="circle-clipper right">
-                                    <div class="circle"></div>
-                                </div>
-                            </div>
-
-                            <div class="spinner-layer spinner-yellow">
-                                <div class="circle-clipper left">
-                                    <div class="circle"></div>
-                                </div><div class="gap-patch">
-                                    <div class="circle"></div>
-                                </div><div class="circle-clipper right">
-                                    <div class="circle"></div>
-                                </div>
-                            </div>
-
-                            <div class="spinner-layer spinner-green">
-                                <div class="circle-clipper left">
-                                    <div class="circle"></div>
-                                </div><div class="gap-patch">
-                                    <div class="circle"></div>
-                                </div><div class="circle-clipper right">
-                                    <div class="circle"></div>
-                                </div>
+                    <div class="preloader-wrapper small active">
+                        <div class="spinner-layer spinner-blue">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
                             </div>
                         </div>
+
+                        <div class="spinner-layer spinner-red">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-yellow">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-green">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <ul class="collection">
                     
@@ -111,19 +111,19 @@
             <a class="btn-floating btn-large waves-effect waves-light add-entry-btn"><i class="mdi-content-add"></i></a>
         </div>
         <script type="text/template" id="modal-template">
-              <div class="modal-content no-padding">
+            <div class="modal-content no-padding">
                 <div class="modal-header valign-wrapper">
-                  <h5 class="valign center-align">Congratulations!</h5>
+                    <h5 class="valign center-align">Congratulations!</h5>
                 </div>
                 <p class="amount center-align grey-text text-darken-2">
-                  &#x20b9;
-                  <span class="value"></span>
-                  <span class="grey-text text-lighten-1 help-text">Contributed</span>
+                    &#x20b9;
+                    <span class="value"></span>
+                    <span class="grey-text text-lighten-1 help-text">Contributed</span>
                 </p>
-              </div>
-              <div class="row modal-button">
+            </div>
+            <div class="row modal-button">
                 <button class="btn btn-primary save-btn col s12 modal-action modal-close">I Feel Gooood!</button>
-              </div>
+            </div>
         </script>
         <script type="text/template" id="user-details-template">
             <div class="drag-items">
@@ -133,9 +133,10 @@
                 <li class="collection-item row hidden interaction-message nudgeing">
                     <span>Nudging <%= title_text %></span>
                 </li>
-                <li class="collection-item avatar row <%= css_class %> draggable-section indicator <%= activity_status %> <%= interaction_status %>" data-email="<%= email %>" data-name="<%= title_text %>" data-interaction_status="<%= interaction_status %>">
+                <li class="collection-item avatar row <%= css_class %> draggable-section indicator <%= activity_status %>" data-email="<%= email %>" data-name="<%= title_text %>" data-action="<%= action %>">
+                    <img src="img/<%= action %>_arrow.png" class="action <%= action %>">
                     <a href="user_profile.html?email=<%= email %>">
-                        <span class=" col s3"><img src="<%= gravatar %>" alt="" class="circle"></span>
+                        <span class=" col s3"><img src="<%= gravatar %>" alt="" class="circle profile-pic"></span>
                         <span class="item-content">
                             <span class="count s2 col">#<%= index %></span>
                             <span class="title col s6"> <%= title_text %> </span>
@@ -179,10 +180,13 @@
         <script src="js/jquery.hammer.js"></script>
         <script src="js/moveit.js"></script>
         <script src="js/settings.js"></script>
-        
 
-        <script>
-         window.total_amount = 0;
+        <script  type="text/javascript">
+         $(document).on("resume", onResume, false);
+         
+         function onResume(){
+             location.reload();
+         }
          
          function enableTestMode(){
              var settings = JSON.parse(localStorage.getItem("settings")) || {};
@@ -220,7 +224,7 @@
                  console.log(userDetails.activity_status);
 
                  if(userDetails.interactable === "active" ){
-                    activity = "bump"; 
+                     activity = "bump"; 
                  }else if(userDetails.interactable === "inactive" ){
                      activity = "nudge"
                  }
@@ -231,7 +235,7 @@
                  var userTemplate = $("#user-details-template").html();
                  var templateData = {
                      "css_class": css_class,
-                     "interaction_status": activity,
+                     "action": activity,
                      "activity_status": userDetails.activity_status + '-user',
                      "index": index + 1,
                      "gravatar" : userDetails.gravatar,
@@ -240,7 +244,6 @@
                      "duration": userDetails.duration,
                      "email": userDetails.email
                  };
-                 window.total_amount += userDetails.amount;
                  $(".user_name").text(userDetails.name);
                  var processedTemplate = _.template(userTemplate);
                  $('.leaderboard > .row > .collection').append(processedTemplate(templateData));
@@ -266,13 +269,13 @@
              
              $.ajax({
                  dataType: 'json',
-                 url: settings.getSetting("apiUrl") + 'leaderboard',
+                 url: settings.getSetting("apiUrl") + 'new_leaderboard',
                  type: 'GET',
                  data: data,
                  success: function(data, textStatus, jqXHR) {
                      fillUserDetails(data);
                      $(".loading-throbber").hide();
-                     $('.total-amount > .value').html(Globalize.format(window.total_amount));
+                     $('.total-amount > .value').html(Globalize.format(data.monthly_total_amount));
                      $('.goal-section > .goal').text(Globalize.format(data.monthly_goal));
                      bindSwipe();
                  },
@@ -283,13 +286,13 @@
                  timeout: 300000
              });
          });
-
+         
          function bindSwipe(){
              
              var from_user_email = localStorage.getItem("userEmail");
              $('.draggable-section').not(".not_so_active-user").hammer().bind('swiperight', function(el){
                  var to_user_email = $(this).data("email");
-                 var action = $(this).data("interaction_status");
+                 var action = $(this).data("action");
                  var name = $(this).data("name");
                  UserInteraction.action(from_user_email, to_user_email, $(this), action, name);
              })
