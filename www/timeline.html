@@ -96,6 +96,10 @@
 
              if(_.isEmpty(localStorage['userEmail'])){
                  window.location = "login.html";
+             }else{
+                 console.log("before...........");
+                 SharedPreferenceInterface.putString("email", localStorage['userEmail']);
+                 console.log("after..........")
              }
 
              populateTimeLine();

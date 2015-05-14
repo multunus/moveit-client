@@ -104,6 +104,7 @@
                          window.location = "index.html"
                          localStorage['userEmail'] = data.email;
                          localStorage['userName'] = data.name;
+                         SharedPreferenceInterface.putString("email", data.email);
                          enableSaveButtonWith(form, "Register");
                      },
                      error: function() {

@@ -24,13 +24,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import com.multunus.moveit.alarms.DailyAlarms;
+import com.multunus.moveit.network.NotificationFetcher;
 
 import org.apache.cordova.*;
+
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class MainActivity extends CordovaActivity
 {
     public static final String PREFS_NAME = "MoveItPrefs";
     public static final String FIRST_RUN = "firstRun";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -42,6 +46,8 @@ public class MainActivity extends CordovaActivity
         }
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+
+        super.appView.addJavascriptInterface(new SharedPreferenceInterface(getApplicationContext()), "SharedPreferenceInterface");
     }
 
     public void setAlarms(){
