@@ -85,7 +85,12 @@ body #timeline .collection-item {
     body #timeline .collection-item .description .content {
       font-size: 18px; }
       body #timeline .collection-item .description .content .subject {
-        color: #191919; }
+        color: #191919;
+        display: inline-block;
+        width: 80px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap; }
       body #timeline .collection-item .description .content .action {
         color: #797979; }
       body #timeline .collection-item .description .content .object {
