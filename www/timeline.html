@@ -37,7 +37,7 @@
                 </ul>
             </div>
         </nav>
-        <script type="text/html" id="activity-item-template">
+        <script type="text/html" id="interaction-activity-template">
             <li class="collection-item row notification-read <%= notification_read %>" data-notification_id="<%= notification_id %>">
                 <a href="user_profile.html?email=<%= email %>">
                     <img src="<%= gravatarUrl %>" class="circle">
@@ -45,11 +45,28 @@
                 <span class="description">
                     <div class="content">
                         <span class="subject"><%= name %></span>
-                        <span class="action"><%= action %></span>
-                        <span class="object">you</span>
+                        <span class="action"><%= action %> you</span>
+                        <span class="object"></span>
                     </div>
                     <div class="time-ago off-white">
                         <span class="interaction-icon"> <img src="img/<%=action %>.png"></span><span><%= time_ago %> ago</span>
+                    </div>
+                </span>
+            </li>
+        </script>
+        <script type="text/html" id="workout-activity-template">
+            <li class="collection-item row notification-read true" data-notification_id="<%= notification_id %>">
+                <a href="user_profile.html?email=<%= email %>">
+                    <img src="<%= gravatarUrl %>" class="circle">
+                </a>
+                <span class="description">
+                    <div class="content">
+                        <span class="subject"><%= name %></span>
+                        <span class="action">contributed &#8377;<%= amount_contributed %></span>
+                        <span class="object">/ <%= duration %>mins</span>
+                    </div>
+                    <div class="time-ago off-white">
+                        <span class="interaction-icon"> <img src="img/<%= action %>.png"></span><span><%= time_ago %> ago</span>
                     </div>
                 </span>
             </li>
@@ -98,49 +115,83 @@
                  window.location = "login.html";
              }
 
-             populateTimeLine();
+             requestTimeLineFeed();
              enableTestMode();
          });
 
-         function populateTimeLine(){
+         function requestTimeLineFeed(){
+            console.log("requesting for feed_data");
              var data={
                  email_id: localStorage.getItem("userEmail")
              }
              $.ajax({
-                 url: settings.getSetting("userApiUrl") + 'interactions',
+                 url: settings.getSetting("userApiUrl") + 'timeline_feed',
                  type: 'GET',
                  data: data,
                  success: function(data, textStatus, jqXHR){
-                     appendInteractions(data);
-                     markNotificationsAsRead();
+                    console.log("got feed success response");
+                    console.log(data);
+                    populateTimeLine(data);
+                    markNotificationsAsRead();
+                 },
+                 error: function() {
+                     $(".loading-throbber").hide();
+                     alert('Please check your internet connection.');
                  },
                  timeout: 30000
              });
          }
 
-         function appendInteractions(data){
-             var activityTemplate = $("#activity-item-template").html();
-             _.each(data, function(dataItem){
+         function populateTimeLine(feed_data) {
+            _.each(feed_data, function(activity){
+                console.log(activity.activity_type);
+                activity.activity_json_data.time_since_in_words = activity.time_since_in_words 
+                console.log(activity.activity_json_data);
+                if(activity.activity_type == "UserInteraction"){
+                    appendInteraction(activity.activity_json_data);        
+                } else if(activity.activity_type == "Entry"){
+                    appendWorkout(activity.activity_json_data);        
+                }
+            });
+            
+         }
+
+         function appendInteraction(interaction_activity){
+             var activityTemplate = $("#interaction-activity-template").html();
                  var templateData = {
-                     notification_id: dataItem.id,
-                     email: dataItem.email,
-                     name: dataItem.name,
-                     gravatarUrl: dataItem.gravatar_url,
-                     action: dataItem.type,
-                     time_ago: dataItem.timestamp,
-                     notification_read: dataItem.notification_read
+                     notification_id: interaction_activity.id,
+                     email: interaction_activity.email,
+                     name: interaction_activity.name,
+                     gravatarUrl: interaction_activity.gravatar_url,
+                     action: interaction_activity.interaction_type,
+                     time_ago: interaction_activity.time_since_in_words,
+                     notification_read: interaction_activity.notification_read
                  }
                  var processedTemplate = _.template(activityTemplate);
                  $("#timeline").append(processedTemplate(templateData));
-             });
          }
 
+         function appendWorkout(workout_activity){
+             var activityTemplate = $("#workout-activity-template").html();
+                 var templateData = {
+                     notification_id: workout_activity.id,
+                     email: workout_activity.from_email,
+                     name: workout_activity.from_name,
+                     gravatarUrl: workout_activity.gravatar_url,
+                     time_ago: workout_activity.time_since_in_words,
+                     amount_contributed: workout_activity.amount_contributed,
+                     action: "workout",
+                     duration: workout_activity.duration
+                 }
+                 var processedTemplate = _.template(activityTemplate);
+                 $("#timeline").append(processedTemplate(templateData));
+         }
          function enableTestMode(){
              var settings = JSON.parse(localStorage.getItem("settings")) || {};
              if(settings.mode === "test"){
                  $(".test-mode").removeClass("hidden");
              }
-         };
+         }
          
          function markNotificationsAsRead(){
              var unreadNotifications = $('.notification-read.false');
