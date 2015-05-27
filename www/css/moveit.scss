@@ -126,10 +126,11 @@ body {
                     .subject {
                         color: #191919;
                         display: inline-block;
-                        width: 80px;
+                        max-width: 80px;
                         text-overflow: ellipsis;
                         overflow: hidden;
                         white-space: nowrap;
+                        vertical-align: text-bottom;
                     }
                     .action {
                         color: #797979;
