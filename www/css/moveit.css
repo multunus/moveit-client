@@ -77,17 +77,17 @@ body #timeline .collection-item {
     display: inline-block;
     margin-right: 10px; }
     body #timeline .collection-item a .circle {
-      width: 50px;
-      height: 50px; }
+      width: 45px;
+      height: 45px; }
   body #timeline .collection-item .description {
     display: inline-block;
     vertical-align: middle; }
     body #timeline .collection-item .description .content {
-      font-size: 18px; }
+      font-size: 16px; }
       body #timeline .collection-item .description .content .subject {
         color: #191919;
         display: inline-block;
-        max-width: 80px;
+        max-width: 65px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;

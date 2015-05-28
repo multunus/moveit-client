@@ -114,19 +114,19 @@ body {
                 display: inline-block;
                 margin-right: 10px;
                 .circle{
-                    width: 50px;
-                    height: 50px;
+                    width: 45px;
+                    height: 45px;
                 }
             }
             .description{
                 display: inline-block;
                 vertical-align: middle;
                 .content{
-                    font-size: 18px;
+                    font-size: 16px;
                     .subject {
                         color: #191919;
                         display: inline-block;
-                        max-width: 80px;
+                        max-width: 65px;
                         text-overflow: ellipsis;
                         overflow: hidden;
                         white-space: nowrap;
