@@ -126,23 +126,25 @@ body {
                     .subject {
                         color: #191919;
                         display: inline-block;
-                        max-width: 65px;
+                        max-width: 90px;
                         text-overflow: ellipsis;
                         overflow: hidden;
                         white-space: nowrap;
-                        vertical-align: text-bottom;
+                        vertical-align: top;
                     }
                     .action {
                         color: #797979;
                     }
                     .object {
                         color: #BDBDBD;
+                        font-size: 0.9em;
                     }
                 }
                 .time-ago{
                     img{
                         width: 22px;
                         margin-right: 6px;
+                        font-size: 0.8em;
                     }
                 }
                 .off-white{

@@ -62,8 +62,8 @@
                 <span class="description">
                     <div class="content">
                         <span class="subject"><%= name %></span>
-                        <span class="action">contributed &#8377;<%= amount_contributed %></span>
-                        <span class="object">/ <%= duration %>m</span>
+                        <span class="action">moved it!</span>
+                        <span class="object"><%= duration %>m : &#8377;<%= amount_contributed %></span>
                     </div>
                     <div class="time-ago off-white">
                         <span class="interaction-icon"> <img src="img/<%= action %>.png"></span><span><%= time_ago %> ago</span>
@@ -71,8 +71,54 @@
                 </span>
             </li>
         </script>
-        <ul class="collection" id="timeline">
-        </ul>
+        <div class="row">
+            <div class="loading-throbber col s12 center">
+                    <div class="preloader-wrapper small active">
+                        <div class="spinner-layer spinner-blue">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-red">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-yellow">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-green">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <ul class="collection" id="timeline">
+            </ul>
+        </div>
+        
         <div class="bottom-spacing">
         </div>
         <div class="fixed-action-btn">
@@ -114,7 +160,7 @@
              if(_.isEmpty(localStorage['userEmail'])){
                  window.location = "login.html";
              }
-
+             $(".loading-throbber").show();
              requestTimeLineFeed();
              enableTestMode();
          });
@@ -131,6 +177,7 @@
                  success: function(data, textStatus, jqXHR){
                     console.log("got feed success response");
                     console.log(data);
+                    $(".loading-throbber").hide();
                     populateTimeLine(data);
                     markNotificationsAsRead();
                  },
@@ -176,7 +223,7 @@
                  var templateData = {
                      notification_id: workout_activity.id,
                      email: workout_activity.from_email,
-                     name: workout_activity.from_name,
+                     name: (localStorage['userName'] === workout_activity.from_name)? "you" : workout_activity.from_name,
                      gravatarUrl: workout_activity.gravatar_url,
                      time_ago: workout_activity.time_since_in_words,
                      amount_contributed: workout_activity.amount_contributed,

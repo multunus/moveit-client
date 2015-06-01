@@ -87,18 +87,20 @@ body #timeline .collection-item {
       body #timeline .collection-item .description .content .subject {
         color: #191919;
         display: inline-block;
-        max-width: 65px;
+        max-width: 90px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        vertical-align: text-bottom; }
+        vertical-align: top; }
       body #timeline .collection-item .description .content .action {
         color: #797979; }
       body #timeline .collection-item .description .content .object {
-        color: #BDBDBD; }
+        color: #BDBDBD;
+        font-size: 0.9em; }
     body #timeline .collection-item .description .time-ago img {
       width: 22px;
-      margin-right: 6px; }
+      margin-right: 6px;
+      font-size: 0.8em; }
     body #timeline .collection-item .description .off-white {
       color: #b7b7b7; }
 body .leaderboard {
