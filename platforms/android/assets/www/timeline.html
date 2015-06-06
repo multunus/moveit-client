@@ -24,21 +24,21 @@
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li class="active"><a href="timeline.html">Timeline</a></li>
                     <li><a href="index.html" >Add Entry</a></li>
-                    <li><a href="monthly_summary.html">Monthly Summary</a></li>
+                    <li><a href="user_profile.html">Monthly Summary</a></li>
                     <li><a href="leaderboard.html">Leaderboard</a></li>
                     <li><a href="settings.html">Settings</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li class="active"><a href="timeline.html">Timeline</a></li>
                     <li><a href="index.html">Add Entry</a></li>
-                    <li><a href="monthly_summary.html">Monthly Summary</a></li>
+                    <li><a href="user_profile.html">Monthly Summary</a></li>
                     <li><a href="leaderboard.html">Leaderboard</a></li>                    
                     <li><a href="settings.html">Settings</a></li>
                 </ul>
             </div>
         </nav>
         <script type="text/html" id="interaction-activity-template">
-            <li class="collection-item row notification-read <%= notification_read %>" data-notification_id="<%= notification_id %>">
+            <li class="collection-item row notification-read" data-notification_id="<%= notification_id %>">
                 <a href="user_profile.html?email=<%= email %>">
                     <img src="<%= gravatarUrl %>" class="circle">
                 </a>
@@ -152,7 +152,6 @@
          function onResume(){
              location.reload();
          }
-
          
          $(function() {
              $(".button-collapse").sideNav();
@@ -167,19 +166,16 @@
 
          function requestTimeLineFeed(){
             console.log("requesting for feed_data");
-             var data={
-                 email_id: localStorage.getItem("userEmail")
-             }
              $.ajax({
-                 url: settings.getSetting("userApiUrl") + 'timeline_feed',
+                 url: settings.getSetting("apiUrl") + 'timeline_feed.json',
                  type: 'GET',
-                 data: data,
+                 data: {email: localStorage.getItem("userEmail")},
                  success: function(data, textStatus, jqXHR){
                     console.log("got feed success response");
                     console.log(data);
                     $(".loading-throbber").hide();
-                    populateTimeLine(data);
-                    markNotificationsAsRead();
+                    populateTimeLine(data.timeline_activities);
+                    //markNotificationsAsRead();
                  },
                  error: function() {
                      $(".loading-throbber").hide();
@@ -223,7 +219,7 @@
                  var templateData = {
                      notification_id: workout_activity.id,
                      email: workout_activity.from_email,
-                     name: (localStorage['userName'] === workout_activity.from_name)? "you" : workout_activity.from_name,
+                     name: (localStorage['userName'] === workout_activity.from_name)? "You" : workout_activity.from_name,
                      gravatarUrl: workout_activity.gravatar_url,
                      time_ago: workout_activity.time_since_in_words,
                      amount_contributed: workout_activity.amount_contributed,
