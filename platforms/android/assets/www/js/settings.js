@@ -1,11 +1,9 @@
 var settings = {
   test:{
-    baseUrl: "http://staging-move1t.herokuapp.com/",
     apiUrl: "http://staging-move1t.herokuapp.com/"
   },
   production:{
-    baseUrl: "http://staging-move1t.herokuapp.com/",
-    apiUrl: "http://staging-move1t.herokuapp.com/"
+    apiUrl: "http://move1t.herokuapp.com/"
   },
 
   getSetting: function(setting){
