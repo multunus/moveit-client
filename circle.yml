@@ -7,9 +7,9 @@ dependencies:
     - echo y | android update sdk --no-ui --filter "android-21"
     - echo y | android update sdk --no-ui --filter "android-18"
     - echo y | android update sdk --no-ui --all --filter "build-tools-21.1.1"
-    - sudo add-apt-repository ppa:cordova-ubuntu/ppa
+    - sudo add-apt-repository -y ppa:cordova-ubuntu/ppa
     - sudo apt-get update
-    - sudo apt-get install cordova-cli
+    - sudo apt-get -y install cordova-cli
 test:
   override:
     - echo "no tests"
