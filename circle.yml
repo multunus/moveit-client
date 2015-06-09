@@ -1,0 +1,18 @@
+machine:
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+dependencies:
+  override:
+    - echo y | android update sdk --no-ui --filter "android-22"
+    - echo y | android update sdk --no-ui --filter "android-21"
+    - echo y | android update sdk --no-ui --filter "android-18"
+    - echo y | android update sdk --no-ui --all --filter "build-tools-21.1.1"
+    - echo y | sudo npm install -g cordova
+test:
+  override:
+    - echo "no tests"
+deployment:
+  production:
+    branch: master
+    commands:
+      - cordova build --release android
