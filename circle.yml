@@ -22,6 +22,9 @@ deployment:
     branch: master
     commands:
       - cordova build --release android
+      - openssl aes-256-cbc -k $DKEY -out platforms/moveit.jks -in platforms/moveit.jks.enc -d
+      - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./platforms/moveit.jks -storepass $MOVEIT_STORE_PASS ./platforms/android/ant-build/.MainActivity-release-unsigned.apk MOVEIT_KEYS
+      - /usr/local/android-sdk-linux/build-tools/22.0.1/zipalign  -v 4 platforms/android/ant-build/.MainActivity-release-unsigned.apk platforms/android/ant-build/MoveIt-signed.apk
 general:
   artifacts:
-    - "platforms/android/ant-build"
+    - "platforms/android/ant-build/*.apk"
