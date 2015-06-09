@@ -22,3 +22,6 @@ deployment:
     branch: master
     commands:
       - cordova build --release android
+general:
+  artifacts:
+    - "platforms/android/ant-build"
