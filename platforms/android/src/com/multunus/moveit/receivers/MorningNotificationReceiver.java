@@ -39,8 +39,8 @@ public class MorningNotificationReceiver extends MoveItReceiver implements Notif
     @Override
     public void onNotificationSuccess(JSONObject jsonObject) {
         try {
-            String shortMessage = jsonObject.getString("short_message");
-            String longMessage = jsonObject.getString("long_message");
+            String shortMessage = jsonObject.getString("short");
+            String longMessage = jsonObject.getString("long");
 
             Log.d("moveit", "morning l = " + longMessage + " s " + shortMessage);
 

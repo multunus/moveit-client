@@ -41,16 +41,16 @@ public class MainActivity extends CordovaActivity
     {
         super.onCreate(savedInstanceState);
         super.init();
+        
         if(firstRun()){
           setAlarms();
         }
-        // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
-
         super.appView.addJavascriptInterface(new SharedPreferenceInterface(getApplicationContext()), "SharedPreferenceInterface");
     }
 
     public void setAlarms(){
+      Log.d("moveit", "Setting Alarms");
         Context context = getApplicationContext();
         DailyAlarms dailyAlarms = new DailyAlarms(context);
         dailyAlarms.setUpAlarms();

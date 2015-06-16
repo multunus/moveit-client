@@ -41,7 +41,7 @@ public class NotificationFetcher extends AsyncTask<String, String, JSONObject>{
 
         Uri.Builder builder = Uri.parse(url).buildUpon();
 
-        builder.appendQueryParameter("email_id", email);
+        builder.appendQueryParameter("email", email);
         builder.appendQueryParameter("time", time);
 
         url = builder.build().toString();

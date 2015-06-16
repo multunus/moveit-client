@@ -39,8 +39,8 @@ public class EveningNotificationReceiver extends MoveItReceiver  implements Noti
     @Override
     public void onNotificationSuccess(JSONObject jsonObject) {
         try {
-            String shortMessage = jsonObject.getString("short_message");
-            String longMessage = jsonObject.getString("long_message");
+            String shortMessage = jsonObject.getString("short");
+            String longMessage = jsonObject.getString("long");
 
             Intent activityIntent = new Intent(context,MainActivity.class);
             PendingIntent pIntent = PendingIntent.getActivity(context, 0, activityIntent, 0);
