@@ -11,8 +11,8 @@ var isRunningOnBrowser = function() {
     return false;
   } else {
     console.log("App runnning in Browser");
-    return true;    
-  }  
+    return true;
+  }
 }
 
 var saveUserDetailsForNativeServices = function(userDetails) {
@@ -58,7 +58,7 @@ var setUnreadNotificationStatus = function() {
     console.log("Failed to fetch UNREAD notifications");
   },
   timeout: 30000
- }); 
+ });
 }
 
 var UserInteraction = {
