@@ -6,3 +6,6 @@ Cordova client for moveit
 
 ### Pull changes to Client
 `git subtree pull --prefix www moveit-shared-client master --squash`
+
+### Update version
+update version number in config.xml
