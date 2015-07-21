@@ -12,11 +12,20 @@
             },
             "config.xml": {
                 "parents": {
-                    "/*": []
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"ChildBrowser\"><param name=\"ios-package\" value=\"ChildBrowserCommand\" /></feature>",
+                            "count": 1
+                        }
+                    ]
                 }
             }
         }
     },
-    "installed_plugins": {},
+    "installed_plugins": {
+        "com.orcasinc.childbrowser": {
+            "PACKAGE_NAME": "com.multunus.moveit"
+        }
+    },
     "dependent_plugins": {}
 }
