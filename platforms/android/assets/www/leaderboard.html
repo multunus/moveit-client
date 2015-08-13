@@ -22,16 +22,16 @@
                 <a href="#" data-activates="mobile-demo" class="button-collapse burger-menu"><i class="mdi-navigation-menu"><span>Leaderboard</span></i></a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="timeline.html">Timeline</a></li>
-                    <li><a href="index.html">Add Entry</a></li>
-                    <li><a href="user_profile.html">Monthly Summary</a></li>
                     <li class="active"><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="user_profile.html">Profile</a></li>
+                    <li><a href="charity.html">Charity</a></li>
                     <li><a href="settings.html">Settings</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a href="timeline.html">Timeline</a></li>
-                    <li><a href="index.html">Add Entry</a></li>
-                    <li><a href="user_profile.html">Monthly Summary</a></li>
                     <li class="active"><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="user_profile.html">Profile</a></li>
+                    <li><a href="charity.html">Charity</a></li>
                     <li><a href="settings.html">Settings</a></li>
                 </ul>
                 <a class="btn-floating btn-small waves-effect waves-light notifications-link" href="notifications.html">
@@ -56,14 +56,9 @@
                         <li><a data-month="current"  href="#!">Current</a></li>
                     </ul>
                     <div class="total-amount">
-                        <span></span>
-                        <span class="value">
-                        </span>
+                        <span>&#8377;</span><span class="value"></span>
                         <span class="goal-section">
-                            /
-                            <span></span>
-                            <span class ="goal">
-                            </span>
+                            / <span>&#8377;</span><span class ="goal"></span>
                         </span>
                     </div>
                 </span>
@@ -132,8 +127,8 @@
                     <h5 class="valign center-align">Congratulations!</h5>
                 </div>
                 <p class="amount center-align grey-text text-darken-2">
-                    <span class="value"></span>
-                    <span class="grey-text text-lighten-1 help-text">Points earned</span>
+                    &#8377;<span class="value"></span>
+                    <span class="grey-text text-lighten-1 help-text"> contributed</span>
                 </p>
             </div>
             <div class="row modal-button">
@@ -157,8 +152,7 @@
                             <span class="title col s6"> <%= title_text %> </span>
                             <span class="col s4 amount-section">
                                 <div class="amount right-align">
-                                    <span class="symbol"></span>
-                                    <%= amount %>
+                                    <span class="symbol">&#8377;</span><%= amount %>
                                 </div>
                                 <div class="duration right-align">
                                     <%= duration %>mins
@@ -224,7 +218,7 @@
              var title_text = '';
              var css_class = '';
              var activity  = "";
-             _.each(data.leaderboard, function(userDetails, index){
+             _.each(data, function(userDetails, index){
                  if(userDetails.email === localStorage["userEmail"]){
                      title_text = 'YOU';
                      css_class = 'highlight';
@@ -232,17 +226,18 @@
                          showModalFor(userDetails, localStorage['lastContribution']);
                          localStorage.removeItem('lastContribution');
                      }
-                 }else{
+                 } else {
                      title_text = userDetails.name;
                      css_class = '';
                  }
 
                  var userTemplate = $("#user-details-template").html();
+                 window.userRankingIndex += 1;
                  var templateData = {
                      "css_class": css_class,
                      "action": userDetails.interactable,
                      "activity_status": userDetails.activity_status + '-user',
-                     "index": index + 1,
+                     "index": window.userRankingIndex,
                      "gravatar" : userDetails.gravatar,
                      "title_text" : title_text,
                      "amount": Globalize.format(userDetails.amount),
@@ -302,7 +297,9 @@
                  type: 'GET',
                  data: requestData,
                  success: function(data, textStatus, jqXHR) {
-                     fillUserDetails(data);
+                     window.userRankingIndex = 0;
+                     fillUserDetails(data.leaderboard.with_entries);
+                     fillUserDetails(data.leaderboard.without_entries);
                      $(".loading-throbber").hide();
                      $('.total-amount > .value').html(Globalize.format(data.monthly_total_amount));
                      $('.goal-section > .goal').text(Globalize.format(data.monthly_goal));
