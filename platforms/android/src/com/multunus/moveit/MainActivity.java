@@ -47,6 +47,7 @@ public class MainActivity extends CordovaActivity
         }
         loadUrl(launchUrl);
         super.appView.addJavascriptInterface(new SharedPreferenceInterface(getApplicationContext()), "SharedPreferenceInterface");
+
     }
 
     public void setAlarms(){
