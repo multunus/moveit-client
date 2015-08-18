@@ -41,6 +41,12 @@ public class EveningNotificationReceiver extends MoveItReceiver  implements Noti
         try {
             String shortMessage = jsonObject.getString("short");
             String longMessage = jsonObject.getString("long");
+            String activity = jsonObject.getString("activity");
+            Log.d("moveit", "Evening l = " + longMessage + " s " + shortMessage);
+            
+            if(activity == ""){
+	        	return;
+	        }
 
             Intent activityIntent = new Intent(context,MainActivity.class);
             PendingIntent pIntent = PendingIntent.getActivity(context, 0, activityIntent, 0);

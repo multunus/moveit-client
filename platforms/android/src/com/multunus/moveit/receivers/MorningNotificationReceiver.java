@@ -41,9 +41,12 @@ public class MorningNotificationReceiver extends MoveItReceiver implements Notif
         try {
             String shortMessage = jsonObject.getString("short");
             String longMessage = jsonObject.getString("long");
-
+            String activity = jsonObject.getString("activity");
             Log.d("moveit", "morning l = " + longMessage + " s " + shortMessage);
 
+            if(activity == ""){
+	        	return;
+	        }
 
             Intent activityIntent = new Intent(context,MainActivity.class);
             PendingIntent pIntent = PendingIntent.getActivity(context, 0, activityIntent, 0);
