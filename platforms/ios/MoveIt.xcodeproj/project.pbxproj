@@ -43,6 +43,7 @@
 		880ED8150155414C8157F52D /* ChildBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30113791F790405A8FDB74C1 /* ChildBrowserViewController.m */; };
 		FA8ED6855BD749219192F05A /* ChildBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8E5BC738EBD4464F8993192F /* ChildBrowser.bundle */; };
 		74B59D8B61D14417A5CC2B65 /* ChildBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE20A0CF9D4D4128A2E331C8 /* ChildBrowserViewController.xib */; };
+		EBB932956C7544CFA92FD45B /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1CC8FE60DB4C1D9E4C6C4A /* CDVInAppBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,8 @@
 		A24686A171604D6A8210CEFE /* ChildBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ChildBrowserViewController.h"; path = "com.orcasinc.childbrowser/ChildBrowserViewController.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		8E5BC738EBD4464F8993192F /* ChildBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "ChildBrowser.bundle"; path = "ChildBrowser.bundle"; sourceTree = "<group>"; };
 		DE20A0CF9D4D4128A2E331C8 /* ChildBrowserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ChildBrowserViewController.xib"; path = "ChildBrowserViewController.xib"; sourceTree = "<group>"; fileEncoding = 4; };
+		AC1CC8FE60DB4C1D9E4C6C4A /* CDVInAppBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVInAppBrowser.m"; path = "org.apache.cordova.inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		576E52A88F564A41AAC41183 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVInAppBrowser.h"; path = "org.apache.cordova.inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +221,8 @@
 				30113791F790405A8FDB74C1 /* ChildBrowserViewController.m */,
 				F27E9C7519704ECD8E9BF4F7 /* ChildBrowserCommand.h */,
 				A24686A171604D6A8210CEFE /* ChildBrowserViewController.h */,
+				AC1CC8FE60DB4C1D9E4C6C4A /* CDVInAppBrowser.m */,
+				576E52A88F564A41AAC41183 /* CDVInAppBrowser.h */,
 			);
 			name = Plugins;
 			path = "MoveIt/Plugins";
@@ -406,6 +411,7 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				A06D242001C44B718A1E60F4 /* ChildBrowserCommand.m in Sources */,
 				880ED8150155414C8157F52D /* ChildBrowserViewController.m in Sources */,
+				EBB932956C7544CFA92FD45B /* CDVInAppBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

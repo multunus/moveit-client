@@ -11,6 +11,10 @@
                         {
                             "xml": "<feature name=\"ChildBrowser\"><param name=\"android-package\" value=\"com.phonegap.plugins.childBrowser.ChildBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -30,6 +34,9 @@
     },
     "installed_plugins": {
         "com.orcasinc.childbrowser": {
+            "PACKAGE_NAME": "com.multunus.moveit"
+        },
+        "org.apache.cordova.inappbrowser": {
             "PACKAGE_NAME": "com.multunus.moveit"
         }
     },
