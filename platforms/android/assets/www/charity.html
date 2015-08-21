@@ -38,6 +38,9 @@
                     <li class="active"><a href="charity.html">Charity</a></li>
                     <li><a href="settings.html">Settings</a></li>
                 </ul>
+                <a class="btn-floating btn-small waves-effect waves-light notifications-link" href="notifications.html">
+                    <span class="notification-count"></span>
+                </a>
             </div>
         </nav>
 
@@ -155,18 +158,13 @@
         <!-- End Google Analytics -->
 
         <script>
-        document.addEventListener("deviceready", onDeviceReady, false);
-        function onDeviceReady() {
-           // var ref = window.open(encodeURI('https://docs.google.com/gview?embedded=true&url=https://s3.amazonaws.com/moveit-multunus/charity_resources/GiveIdia_education_march_2015.pdf'), '_blank', 'location=yes,EnableViewPortScale=yes');
-           // requestCharityFeed();
-        }
-
          $(function() {
              $(".button-collapse").sideNav();
              $(".loading-throbber").show();
 
              requestCharityFeed();
              enableTestMode();
+             setUnreadNotificationStatus();
          });
 
          function requestCharityFeed(){
