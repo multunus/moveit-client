@@ -1,11 +1,23 @@
 # moveit-client
 Cordova client for moveit
 
-### Add Remote for Shared Client
-`git remote add -f moveit-shared-client https://github.com/multunus/moveit-shared-client.git`
+## Install cordova
+<code>npm install -g cordova</code>
 
-### Pull changes to Client
-`git subtree pull --prefix www moveit-shared-client master --squash`
+## Install npm dependencies
+<code> npm install </code>
 
-### Update version
-update version number in config.xml
+## Building and run the app in your device
+<code> cordova run android </code>
+
+## Add Remote for Shared Client
+We maintain a repo to share the ui code between mobile and web app for consistency
+
+<code> `git remote add -f moveit-shared-client https://github.com/multunus/moveit-shared-client.git` </code>
+
+### Pull changes to Client repo
+
+<code> `git subtree pull --prefix www moveit-shared-client master --squash` </code>
+
+# Updating the version
+update version number in ```config.xml```
